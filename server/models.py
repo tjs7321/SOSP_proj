@@ -15,7 +15,8 @@ class Employee(db.Model):
     type = db.Column(db.String)
     department_id = db.Column(db.Integer)
 
-    forms = db.relationship()
+    forms = db.relationship('Form', backref='employee_id')
+    department_forms = association_proxy('department_forms','form')
 
     @hybrid_property
     def password_hash(self):
@@ -50,16 +51,14 @@ class Form(db.Model):
     __tablename__ = 'forms'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=False)
-    start = db.Column(db.DateTime, nullable=False)
-    end = db.Column(db.DateTime, nullable=False)
+    body = db.Column(db.String, nullable=False)
+    employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'))
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    prep_session_users = db.relationship('PrepSessionUser', backref='prep_session', cascade='all, delete-orphan')
-    users = association_proxy('prep_session_users', 'user')
+    department_forms = db.relationship('DepartmentForm', backref='form', cascade='all, delete-orphan')
+    site_forms = db.relationship('SiteForm', backref='form', cascade='all, delete-orphan')
 
     @classmethod
     def find_by_id(cls,id):
@@ -127,3 +126,10 @@ class SiteForm(db.Model):
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+    @validates('admin_id')
+    def validate_follower(self,key,admin_id):
+        if Employee.find_by_id(admin_id):
+            return admin_id
+        else:
+            raise ValueError("Not a valid admin")
