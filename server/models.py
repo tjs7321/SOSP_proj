@@ -13,10 +13,13 @@ class Employee(db.Model):
     name = db.Column(db.String, unique=True)
     _password_hash = db.Column(db.String)
     type = db.Column(db.String)
-    department_id = db.Column(db.Integer)
 
-    forms = db.relationship('Form', backref='employee_id')
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
+    department = db.relationship('Department', back_populates='employees')
+
+    forms = db.relationship('Form', backref='employee')
     department_forms = association_proxy('department_forms','form')
+    site_forms = association_proxy('site_forms', 'form')
 
     @hybrid_property
     def password_hash(self):
@@ -45,6 +48,13 @@ class Employee(db.Model):
             'name':self.name,
             'email': self.email
         }
+    
+    @validates('type')
+    def validates_type(self, key, type):
+        employee_types = ['employee', 'manager', 'admin']
+        if type not in employee_types:
+            raise ValueError('Employee type must be either employee, manager, or admin')
+        return type
 
 class Form(db.Model):
 
@@ -53,6 +63,7 @@ class Form(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String, nullable=False)
     employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'))
+    department_id = db.Column(db.Integer(), db.ForeignKey('department.id'))
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
@@ -85,6 +96,9 @@ class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable = False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
+
+    employees = db.relationship('Employee', back_populates='department')
+    forms = db.relationship('Forms', back_populates='department')
 
     def __repr__(self):
         return f'< {self.name} >'
@@ -128,7 +142,7 @@ class SiteForm(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     @validates('admin_id')
-    def validate_follower(self,key,admin_id):
+    def validate_admin(self,key,admin_id):
         if Employee.find_by_id(admin_id):
             return admin_id
         else:

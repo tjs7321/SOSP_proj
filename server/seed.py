@@ -4,50 +4,68 @@ from random import randint, choice as rc
 from datetime import datetime, timedelta
 from faker import Faker
 from sqlalchemy import text
+import random
 
 from app import app
-from models import db, PrepSession, User, PrepSessionUser
+from models import *
 
 fake = Faker()
 
 with app.app_context():
 
     print("Deleting all records...")
-    PrepSession.query.delete()
-    User.query.delete()
-    PrepSessionUser.query.delete()
+    Form.query.delete()
+    Employee.query.delete()
+    Department.query.delete()
 
     fake = Faker()
 
-    print("Creating users...")
+    print("Creating departments...")
+
+    department1 = Department(name='maintenance')
+    department2 = Department(name='operations')
+    department3 = Department(name='chemistry')
+    department4 = Department(name='radiation protection')
+    department5 = Department(name='supply chain')
+    department6 = Department(name='site services')
+    department7 = Department(name='engineering')
+
+    print("Creating employees...")
 
     # make sure users have unique usernames
     users = []
     usernames = []
 
-    user1= User(username='johncarges',email='johncarges@gmail.com')
-    user1.password_hash = 'asdfg'
+    employee_types = ['employee', 'manager', 'admin']
 
-    user2 = User(username='Teddy Smith', email='tjs7321@gmail.com')
-    user2.password_hash = '1234'
+    employee1= Employee(name='John Carges')
+    employee1.password_hash = '12345'
+    employee1.type = 'manager'
+
+    employee2 = Employee(name='Teddy Smith')
+    employee2.password_hash = '12345'
+    employee2.type = 'admin'
+
+    employee3 = Employee(name='BreElle Wells')
+    employee3.password_hash = '12345'
+    employee3.type = 'manager'
+    
+    employee4 = Employee(name='Curtis Odell')
+    employee4.password_hash = '12345'
+    employee4.type = 'employee'
 
 
-    db.session.add(user1)
-    db.session.add(user2)
-    users = [user1, user2]
+    db.session.add(employee1)
+    db.session.add(employee2)
+    db.session.add(employee3)
+    db.session.add(employee4)
+    employees = [employee1, employee2, employee3, employee4]
     for i in range(30):
-        
-        username = fake.name()
-        while username in usernames or len(username)<8 or len(username)>20:
-            username = fake.name()
-        usernames.append(username)
+        name = fake.name()
+        type = 'employee'
+        department_id = random.randint(1,7)
 
-        email = f'{username.split(" ")[0].lower()}' \
-            + username.split(" ")[1][0].lower() \
-            + str(randint(1,100)) \
-            + '@gmail.com'
-
-        user = User(
+        user = Employee(
             username=username,
             email=email #fake.email()
         )
