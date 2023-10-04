@@ -14,11 +14,10 @@ class Employee(db.Model):
     _password_hash = db.Column(db.String)
     type = db.Column(db.String)
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
+    site_id = db.Column(db.Integer, db.ForeignKey('sites.id'))
 
-    # department = db.relationship('Department', back_populates='employees')
+    department = db.relationship('Department', back_populates='employees')
     forms = db.relationship('Form', backref='employee')
-    department_forms = association_proxy('department_forms','form')
-    site_forms = association_proxy('site_forms', 'form')
 
     @hybrid_property
     def password_hash(self):
@@ -45,7 +44,9 @@ class Employee(db.Model):
         return {
             'id':self.id,
             'name':self.name,
-            'email': self.email
+            'type':self.type,
+            'department_id':self.department_id,
+            'site_id':self.site_id,
         }
     
     @validates('type')
@@ -62,13 +63,11 @@ class Form(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String, nullable=False)
     employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'), nullable=False)
-    department_id = db.Column(db.Integer(), nullable=False)
+    department_id = db.Column(db.Integer(), db.ForeignKey('departments.id'), nullable=False)
+    site_id = db.Column(db.Integer(), db.ForeignKey('sites.id'), nullable=False)
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-
-    department_forms = db.relationship('DepartmentForm', backref='form', cascade='all, delete-orphan')
-    site_forms = db.relationship('SiteForm', backref='form', cascade='all, delete-orphan')
 
     @classmethod
     def find_by_id(cls,id):
@@ -82,7 +81,8 @@ class Form(db.Model):
             'id':self.id,
             'body':self.body,
             'department_id':self.department_id,
-            'review_status':self.review_status,
+            'site_id':self.site_id,
+            # 'review_status':self.review_status,
         }
 
     # def to_dict_full(self):
@@ -96,53 +96,18 @@ class Department(db.Model):
     name = db.Column(db.String, nullable = False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
-    # employees = db.relationship('Employee', back_populates='department')
-    # forms = db.relationship('Forms', back_populates='department')
+    employees = db.relationship('Employee', back_populates='department')
+    forms = db.relationship('Form', backref='department')
 
     def __repr__(self):
         return f'< {self.name} >'
+        
+class Site(db.Model):
 
-class DepartmentForm(db.Model):
-
-    __tablename__='department_forms'
+    __tablename__='sites'
 
     id = db.Column(db.Integer, primary_key=True)
-    form_id = db.Column(db.Integer, db.ForeignKey('forms.id'))
-    manager_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
-    department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
+    name = db.Column(db.String, nullable=False)
 
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-
-
-    @validates('department_id')
-    def validate_follower(self,key,department_id):
-        if Employee.find_by_id(department_id):
-            return department_id
-        else:
-            raise ValueError("Not a valid department")
-        
-    @validates('session_id')
-    def validate_follower(self,key,form_id):
-        if Form.find_by_id(form_id):
-            return form_id
-        else:
-            raise ValueError("Not a valid form")
-        
-class SiteForm(db.Model):
-
-    __tablename__='site_forms'
-
-    id = db.Column(db.Integer, primary_key=True)
-    form_id = db.Column(db.Integer, db.ForeignKey('forms.id'))
-    admin_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
-
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-
-    @validates('admin_id')
-    def validate_admin(self,key,admin_id):
-        if Employee.find_by_id(admin_id):
-            return admin_id
-        else:
-            raise ValueError("Not a valid admin")
+    forms  = db.relationship('Form', backref='site')
+    

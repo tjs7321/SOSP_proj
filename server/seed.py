@@ -20,6 +20,12 @@ with app.app_context():
 
     fake = Faker()
 
+    print("Creating sites...")
+
+    site1 = Site(name='Brunswick Nuclear Station')
+
+    db.session.add(site1)
+
     print("Creating departments...")
 
     department1 = Department(name='maintenance')
@@ -50,21 +56,25 @@ with app.app_context():
     employee1.password_hash = '12345'
     employee1.type = 'manager'
     employee1.department_id = 7
+    employee1.site_id = 1
 
     employee2 = Employee(name='Teddy Smith')
     employee2.password_hash = '12345'
     employee2.type = 'admin'
     employee2.department_id = 1
+    employee2.site_id = 1
 
     employee3 = Employee(name='BreElle Wells')
     employee3.password_hash = '12345'
     employee3.type = 'manager'
     employee3.department_id = 6
+    employee3.site_id = 1
     
     employee4 = Employee(name='Curtis Odell')
     employee4.password_hash = '12345'
     employee4.type = 'employee'
     employee4.department_id = 1
+    employee4.site_id = 1
 
 
     db.session.add(employee1)
@@ -81,11 +91,13 @@ with app.app_context():
 
         type = 'employee'
         department_id = random.randint(1,7)
+        site_id = 1
 
         employee = Employee(
             name=name,
             type=type,
-            department_id=department_id
+            department_id=department_id,
+            site_id=site_id
         )
 
         employee.password_hash = employee.name + 'password'
@@ -108,7 +120,8 @@ with app.app_context():
         form = Form(
             body=body,
             employee_id=employee.id,
-            department_id=employee.department_id
+            department_id=employee.department_id,
+            site_id=employee.site_id
         )
 
         forms.append(form)
