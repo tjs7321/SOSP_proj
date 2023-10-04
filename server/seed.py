@@ -54,6 +54,7 @@ with app.app_context():
     employee2 = Employee(name='Teddy Smith')
     employee2.password_hash = '12345'
     employee2.type = 'admin'
+    employee2.department_id = 1
 
     employee3 = Employee(name='BreElle Wells')
     employee3.password_hash = '12345'
@@ -92,25 +93,27 @@ with app.app_context():
         employees.append(employee)
 
     db.session.add_all(employees)
+    db.session.commit()
 
-    # print("Creating forms...")
-    # forms = []
-    # for i in range(1000):
+    print("Creating forms...")
+    forms = []
+    for i in range(1000):
 
-    #     #choose an employee to submit a form
-    #     employee = session.exec(select(Employee).order_by(func.random())).first()
+        #choose an employee to submit a form
+        id = random.randint(1,34)
+        employee = Employee.query.filter_by(id=id).first()
 
-    #     body = fake.paragraph(nb_sentences=8)
+        body = fake.paragraph(nb_sentences=8)
         
-    #     form = Form(
-    #         body=body,
-    #         employee_id=employee.id,
-    #         department_id=employee.department_id
-    #     )
+        form = Form(
+            body=body,
+            employee_id=employee.id,
+            department_id=employee.department_id
+        )
 
-    #     forms.append(form)
+        forms.append(form)
 
-    # db.session.add_all(form)
+    db.session.add_all(forms)
 
     db.session.commit()
     

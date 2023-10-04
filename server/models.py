@@ -62,7 +62,7 @@ class Form(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String, nullable=False)
     employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'), nullable=False)
-    department_id = db.Column(db.Integer(), db.ForeignKey('departments.id'), nullable=False)
+    department_id = db.Column(db.Integer(), nullable=False)
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
