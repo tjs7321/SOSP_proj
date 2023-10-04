@@ -3,7 +3,7 @@
 from random import randint, choice as rc
 from datetime import datetime, timedelta
 from faker import Faker
-from sqlalchemy import text
+from sqlalchemy import text, func
 import random
 
 from app import app
@@ -30,17 +30,26 @@ with app.app_context():
     department6 = Department(name='site services')
     department7 = Department(name='engineering')
 
+    db.session.add(department1)
+    db.session.add(department2)
+    db.session.add(department3)
+    db.session.add(department4)
+    db.session.add(department5)
+    db.session.add(department6)
+    db.session.add(department7)
+
     print("Creating employees...")
 
     # make sure users have unique usernames
-    users = []
-    usernames = []
+    employees = []
+    names = []
 
     employee_types = ['employee', 'manager', 'admin']
 
     employee1= Employee(name='John Carges')
     employee1.password_hash = '12345'
     employee1.type = 'manager'
+    employee1.department_id = 7
 
     employee2 = Employee(name='Teddy Smith')
     employee2.password_hash = '12345'
@@ -49,76 +58,59 @@ with app.app_context():
     employee3 = Employee(name='BreElle Wells')
     employee3.password_hash = '12345'
     employee3.type = 'manager'
+    employee3.department_id = 6
     
     employee4 = Employee(name='Curtis Odell')
     employee4.password_hash = '12345'
     employee4.type = 'employee'
+    employee4.department_id = 1
 
 
     db.session.add(employee1)
     db.session.add(employee2)
     db.session.add(employee3)
     db.session.add(employee4)
-    employees = [employee1, employee2, employee3, employee4]
+
+
     for i in range(30):
         name = fake.name()
+        while name in names:
+            name = fake.name()
+        names.append(name)
+
         type = 'employee'
         department_id = random.randint(1,7)
 
-        user = Employee(
-            username=username,
-            email=email #fake.email()
+        employee = Employee(
+            name=name,
+            type=type,
+            department_id=department_id
         )
 
-        user.password_hash = user.username + 'password'
+        employee.password_hash = employee.name + 'password'
 
-        users.append(user)
-    
-    query = text('DELETE FROM follow')
-    db.session.execute(query)               ## Deletes all follows
+        employees.append(employee)
 
-    for user in users:
-        for i in range(30):
-            if user != users[i]:
-                user.followers.append(users[i])
+    db.session.add_all(employees)
 
-    db.session.add_all(users)
+    # print("Creating forms...")
+    # forms = []
+    # for i in range(1000):
 
-    print("Creating PrepSessions...")
-    prep_sessions = []
-    start_day = datetime.now() - timedelta(days=30)
-    end_day = start_day +timedelta(days=60)
-    for i in range(1000):
-        description = fake.paragraph(nb_sentences=8)
-        start = fake.date_time_between_dates(datetime_start=start_day, datetime_end=end_day)
-        end = start + timedelta(hours=1)
+    #     #choose an employee to submit a form
+    #     employee = session.exec(select(Employee).order_by(func.random())).first()
+
+    #     body = fake.paragraph(nb_sentences=8)
         
-        prep_session = PrepSession(
-            title=fake.sentence(),
-            description=description,
-            start=start,
-            end=end,
-        )
+    #     form = Form(
+    #         body=body,
+    #         employee_id=employee.id,
+    #         department_id=employee.department_id
+    #     )
 
-        prep_sessions.append(prep_session)
+    #     forms.append(form)
 
-    db.session.add_all(prep_sessions)
-    
-    print("Adding users to sessions...")
-    prep_session_users = [PrepSessionUser(
-        user=rc(users),
-        prep_session=rc(prep_sessions)
-        ) for _ in range(600)]
-    for session in prep_sessions:
-        user = rc(users)
-        prep_session_users.append(
-            PrepSessionUser(
-                user=user,
-                prep_session=session
-            )
-        )
-    
-    db.session.add_all(prep_session_users)
+    # db.session.add_all(form)
 
     db.session.commit()
     

@@ -13,10 +13,9 @@ class Employee(db.Model):
     name = db.Column(db.String, unique=True)
     _password_hash = db.Column(db.String)
     type = db.Column(db.String)
+    department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
 
-    department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
-    department = db.relationship('Department', back_populates='employees')
-
+    # department = db.relationship('Department', back_populates='employees')
     forms = db.relationship('Form', backref='employee')
     department_forms = association_proxy('department_forms','form')
     site_forms = association_proxy('site_forms', 'form')
@@ -62,8 +61,8 @@ class Form(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String, nullable=False)
-    employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'))
-    department_id = db.Column(db.Integer(), db.ForeignKey('department.id'))
+    employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'), nullable=False)
+    department_id = db.Column(db.Integer(), db.ForeignKey('departments.id'), nullable=False)
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
@@ -97,8 +96,8 @@ class Department(db.Model):
     name = db.Column(db.String, nullable = False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
-    employees = db.relationship('Employee', back_populates='department')
-    forms = db.relationship('Forms', back_populates='department')
+    # employees = db.relationship('Employee', back_populates='department')
+    # forms = db.relationship('Forms', back_populates='department')
 
     def __repr__(self):
         return f'< {self.name} >'
