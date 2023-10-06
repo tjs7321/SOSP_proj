@@ -13,9 +13,12 @@ class Employee(db.Model):
     name = db.Column(db.String, unique=True)
     _password_hash = db.Column(db.String)
     type = db.Column(db.String)
-    department_id = db.Column(db.Integer)
+    department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
 
-    forms = db.relationship()
+    # department = db.relationship('Department', back_populates='employees')
+    forms = db.relationship('Form', backref='employee')
+    department_forms = association_proxy('department_forms','form')
+    site_forms = association_proxy('site_forms', 'form')
 
     @hybrid_property
     def password_hash(self):
@@ -44,22 +47,28 @@ class Employee(db.Model):
             'name':self.name,
             'email': self.email
         }
+    
+    @validates('type')
+    def validates_type(self, key, type):
+        employee_types = ['employee', 'manager', 'admin']
+        if type not in employee_types:
+            raise ValueError('Employee type must be either employee, manager, or admin')
+        return type
 
 class Form(db.Model):
 
     __tablename__ = 'forms'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=False)
-    start = db.Column(db.DateTime, nullable=False)
-    end = db.Column(db.DateTime, nullable=False)
+    body = db.Column(db.String, nullable=False)
+    employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'), nullable=False)
+    department_id = db.Column(db.Integer(), db.ForeignKey('departments.id'), nullable=False)
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    prep_session_users = db.relationship('PrepSessionUser', backref='prep_session', cascade='all, delete-orphan')
-    users = association_proxy('prep_session_users', 'user')
+    department_forms = db.relationship('DepartmentForm', backref='form', cascade='all, delete-orphan')
+    site_forms = db.relationship('SiteForm', backref='form', cascade='all, delete-orphan')
 
     @classmethod
     def find_by_id(cls,id):
@@ -86,6 +95,9 @@ class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable = False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
+
+    # employees = db.relationship('Employee', back_populates='department')
+    # forms = db.relationship('Forms', back_populates='department')
 
     def __repr__(self):
         return f'< {self.name} >'
@@ -127,3 +139,10 @@ class SiteForm(db.Model):
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+    @validates('admin_id')
+    def validate_admin(self,key,admin_id):
+        if Employee.find_by_id(admin_id):
+            return admin_id
+        else:
+            raise ValueError("Not a valid admin")
