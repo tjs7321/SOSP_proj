@@ -38,24 +38,9 @@ class Forms(Resource):
                     body=data['body'],
                     employee_id=data['employee_id'],
                     department_id=data['department_id'],
+                    site_id=data['site_id'],
                 )
                 db.session.add(new_form)
-                db.session.commit()
-                
-                #add entry to department forms
-                new_department_form = DepartmentForm(
-                    employee_id=employee_id,
-                    form_id=new_form.id
-                )
-                db.session.add(new_department_form)
-                db.session.commit()
-
-                #add entry to site forms
-                new_site_form = SiteForm(
-                    employee_id=employee_id,
-                    form_id=new_form.id
-                )
-                db.session.add(new_site_form)
                 db.session.commit()
                 
                 return new_form.to_dict(), 201
@@ -66,6 +51,21 @@ class Forms(Resource):
                 {'message': 'Must be logged in'},
                 401
             )
+        
+class FormsHomeScreen(Resource):
+    def get(self):
+        if (employee_id := session.get('employee_id')):
+            employee = Employee.find_by_id(employee_id)
+            employee_forms = [form.to_dict() for form in employee.forms]
+            sorted_forms = sorted(employee_forms, key=lambda x: x['created_at'])
+            limited_forms = []
+            for form in sorted_forms:
+                if len(limited_forms) < 10:
+                    limited_forms.append(form)
+
+            return limited_forms, 200
+        else:
+            return {'message': 'Must be logged in'}, 401
 
 class FormByID(Resource):
     def get(self,id):
@@ -139,6 +139,7 @@ api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Forms, '/forms', endpoint='forms')
+api.add_resource(FormsHomeScreen,'/forms_homescreen', endpoint='forms_homescreen')
 api.add_resource(FormByID,'/forms/<int:id>')
 
 if __name__ == '__main__':
