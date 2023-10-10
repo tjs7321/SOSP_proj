@@ -61,7 +61,13 @@ class Form(db.Model):
     __tablename__ = 'forms'
 
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String, nullable=False)
+    type = db.Column(db.String, nullable=False)
+    answer1 = db.Column(db.String, nullable=False)
+    answer2 = db.Column(db.String, nullable=False)
+    answer3 = db.Column(db.String, nullable=False)
+    answer4 = db.Column(db.String, nullable=False)
+    answer5 = db.Column(db.String, nullable=False)
+    comments = db.Column(db.String, nullable=False)
     employee_id = db.Column(db.Integer(), db.ForeignKey('employees.id'), nullable=False)
     department_id = db.Column(db.Integer(), db.ForeignKey('departments.id'), nullable=False)
     site_id = db.Column(db.Integer(), db.ForeignKey('sites.id'), nullable=False)
@@ -79,14 +85,28 @@ class Form(db.Model):
     def to_dict(self):
         return {
             'id':self.id,
-            'body':self.body,
+            'type':self.type,
+            'answer1':self.answer1,
+            'answer2':self.answer2,
+            'answer3':self.answer3,
+            'answer4':self.answer4,
+            'answer5':self.answer5,
+            'comments':self.comments,
             'department_id':self.department_id,
             'site_id':self.site_id,
+            "created_at":self.created_at.isoformat()
             # 'review_status':self.review_status,
         }
 
     # def to_dict_full(self):
     #     return {}
+
+    @validates('type')
+    def validates_type(self, key, type):
+        form_types = ['Meetings', 'Radiation Protection', 'Safety', 'Environmental']
+        if type not in form_types:
+            raise ValueError('Form type must be either Meetings, Radiation Protection, Safety, or Environmental')
+        return type
 
 class Department(db.Model):
 

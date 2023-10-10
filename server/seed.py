@@ -114,11 +114,18 @@ with app.app_context():
         #choose an employee to submit a form
         id = random.randint(1,34)
         employee = Employee.query.filter_by(id=id).first()
-
-        body = fake.paragraph(nb_sentences=8)
+        types = ['Meetings', 'Radiation Protection', 'Safety', 'Environmental']
+        choices = ['Yes', 'No']
+        comments = fake.paragraph(nb_sentences=4)
         
         form = Form(
-            body=body,
+            type=random.choice(types),
+            answer1=random.choice(choices),
+            answer2=random.choice(choices),
+            answer3=random.choice(choices),
+            answer4=random.choice(choices),
+            answer5=random.choice(choices),
+            comments=comments,
             employee_id=employee.id,
             department_id=employee.department_id,
             site_id=employee.site_id

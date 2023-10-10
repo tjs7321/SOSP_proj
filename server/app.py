@@ -35,7 +35,13 @@ class Forms(Resource):
             data = request.get_json()
             try:
                 new_form = Form(
-                    body=data['body'],
+                    type=data['type'],
+                    answer1=data['answer1'],
+                    answer2=data['answer2'],
+                    answer3=data['answer3'],
+                    answer4=data['answer4'],
+                    answer5=data['answer5'],
+                    comments=data['comments'],
                     employee_id=data['employee_id'],
                     department_id=data['department_id'],
                     site_id=data['site_id'],
