@@ -63,10 +63,10 @@ class FormsHomeScreen(Resource):
         if (employee_id := session.get('employee_id')):
             employee = Employee.find_by_id(employee_id)
             employee_forms = [form.to_dict() for form in employee.forms]
-            sorted_forms = sorted(employee_forms, key=lambda x: x['created_at'])
+            sorted_forms = sorted(employee_forms, key=lambda x: x['created_at'], reverse=True)
             limited_forms = []
             for form in sorted_forms:
-                if len(limited_forms) < 10:
+                if len(limited_forms) < 5:
                     limited_forms.append(form)
 
             return limited_forms, 200
@@ -84,8 +84,13 @@ class FormByID(Resource):
         if (form:= Form.find_by_id(id)):
             try:
                 data=request.get_json()
-                form.title = data['title']
-                form.description = data['description']
+                form.type: data['type']
+                form.answer1: data['answer1']
+                form.answer2: data['answer2']
+                form.answer3: data['answer3']
+                form.answer4: data['answer4']
+                form.answer5: data['answer5']
+                form.comments: data['comments']
                 
                 db.session.add(form)
                 db.session.commit()

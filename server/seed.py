@@ -17,6 +17,9 @@ with app.app_context():
     Form.query.delete()
     Employee.query.delete()
     Department.query.delete()
+    Site.query.delete()
+    QuestionList.query.delete()
+
 
     fake = Faker()
 
