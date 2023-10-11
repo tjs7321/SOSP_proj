@@ -107,6 +107,42 @@ with app.app_context():
     db.session.add_all(employees)
     db.session.commit()
 
+    print("Creating questions...")
+
+    question_list1= QuestionList(type='Meetings')
+    question_list1.question1 = 'Did the meeting start on time?'
+    question_list1.question2 = 'Were there quality visuals?'
+    question_list1.question3 = 'Was a take-a-minute conducted?'
+    question_list1.question4 = 'Was there active participation?'
+    question_list1.question5 = 'Did the meeting end on time?'
+
+    question_list2 = QuestionList(type='Radiation Protection')
+    question_list2.question1 = 'Was proper PPE used?'
+    question_list2.question2 = 'Was a clean step-off pad maintained?'
+    question_list2.question3 = 'Were RP boundaries maintained?'
+    question_list2.question4 = 'Was proper dosimetry worn?'
+    question_list2.question5 = 'Was proper signage posted?'
+
+    question_list3 = QuestionList(type='Safety')
+    question_list3.question1 = 'Was a proper take-a-minute performed?'
+    question_list3.question2 = 'Was proper fall protection used?'
+    question_list3.question3 = 'Was proper PPE utilized?'
+    question_list3.question4 = 'Are fire extinguishers, first aid kits, and other safety equipment readily available and in good condition?'
+    question_list3.question5 = 'Are emergency exits and evacuation routes clear and accessible?'
+    
+    question_list4 = QuestionList(type='Environmental')
+    question_list4.question1 = 'Are wildlife exclusion and protection measures in place and operational?'
+    question_list4.question2 = 'Are chemical storage containers properly labeled, sealed, and stored securely?'
+    question_list4.question3 = 'Are exhaust systems visibly functioning, ensuring that fumes or emissions are appropriately contained?'
+    question_list4.question4 = 'Is there any visible evidence of water leakage, spills, or inadequate containment?'
+    question_list4.question5 = 'Is there evidence of proper disposal and storage of waste materials to prevent leaks or spills?'
+
+
+    db.session.add(question_list1)
+    db.session.add(question_list2)
+    db.session.add(question_list3)
+    db.session.add(question_list4)
+
     print("Creating forms...")
     forms = []
     for i in range(1000):

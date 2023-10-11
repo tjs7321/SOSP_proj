@@ -130,4 +130,34 @@ class Site(db.Model):
     name = db.Column(db.String, nullable=False)
 
     forms  = db.relationship('Form', backref='site')
+
+class QuestionList(db.Model):
+
+    __tablename__='questions'
+
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String, nullable=False)
+    question1 = db.Column(db.String, nullable=False)
+    question2 = db.Column(db.String, nullable=False)
+    question3 = db.Column(db.String, nullable=False)
+    question4 = db.Column(db.String, nullable=False)
+    question5 = db.Column(db.String, nullable=False)
+
+    @validates('type')
+    def validates_type(self, key, type):
+        form_types = ['Meetings', 'Radiation Protection', 'Safety', 'Environmental']
+        if type not in form_types:
+            raise ValueError('Form type must be either Meetings, Radiation Protection, Safety, or Environmental')
+        return type
+
+    def to_dict(self):
+        return {
+            'id':self.id,
+            'type':self.type,
+            'question1':self.question1,
+            'question2':self.question2,
+            'question3':self.question3,
+            'question4':self.question4,
+            'question5':self.question5,
+        }
     

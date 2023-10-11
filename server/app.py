@@ -140,6 +140,19 @@ class CheckSession(Resource):
             return employee.to_dict(), 200
         return {'error': '401 Unauthorized'}, 401
     
+class Questions(Resource):
+
+    def get(self):
+        if (employee_id := session.get('employee_id')):
+            questions = [question.to_dict() 
+                        for question in QuestionList.query.all()]
+            return questions, 200
+        else:
+            return make_response(
+                {'message': 'Must be logged in'},
+                401
+            )
+    
     
 api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Logout, '/logout', endpoint='logout')
@@ -147,6 +160,7 @@ api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Forms, '/forms', endpoint='forms')
 api.add_resource(FormsHomeScreen,'/forms_homescreen', endpoint='forms_homescreen')
 api.add_resource(FormByID,'/forms/<int:id>')
+api.add_resource(Questions, '/questions', endpoint='questions')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
