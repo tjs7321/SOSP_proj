@@ -83,30 +83,37 @@ class FormByID(Resource):
 
     def patch(self,id):
         if (form:= Form.find_by_id(id)):
-            try:
-                data=request.get_json()
-                print(data)
-                form.type = data['type']
-                form.answer1 = data['answer1']
-                form.answer2 = data['answer2']
-                form.answer3 = data['answer3']
-                form.answer4 = data['answer4']
-                form.answer5 = data['answer5']
-                form.comments = data['comments']
-                
-                db.session.add(form)
-                db.session.commit()
-                return form.to_dict(), 202
-            except ValueError as e:
-                return {'error':str(e)}, 422
+            if (form.employee_id == session.get('employee_id')):
+                try:
+                    data=request.get_json()
+                    print(data)
+                    form.type = data['type']
+                    form.answer1 = data['answer1']
+                    form.answer2 = data['answer2']
+                    form.answer3 = data['answer3']
+                    form.answer4 = data['answer4']
+                    form.answer5 = data['answer5']
+                    form.comments = data['comments']
+
+                    
+                    db.session.add(form)
+                    db.session.commit()
+                    return form.to_dict(), 202
+                except ValueError as e:
+                    return {'error':str(e)}, 422
+            else:
+                return {'error':'Unauthorized'}, 403
         else:
             return {'error':'Resource not found'}, 404
 
     def delete(self,id):
         if (form:=Form.find_by_id(id)):
-            db.session.delete(form)
-            db.session.commit()
-            return {}, 204
+            if (form.employee_id == session.get('employee_id')):
+                db.session.delete(form)
+                db.session.commit()
+                return {}, 204
+            else:
+                return {'error':'Unauthorized'}, 403
         else:
             return {'error':'Resource not found'}, 404
         
