@@ -21,9 +21,10 @@ class Forms(Resource):
     def get(self):
         if (employee_id := session.get('employee_id')):
             employee = Employee.find_by_id(employee_id)
-            response = [form.to_dict() 
+            employee_forms = [form.to_dict() 
                         for form in employee.forms]
-            return response, 200
+            sorted_forms = sorted(employee_forms, key=lambda x: x['created_at'], reverse=True)
+            return sorted_forms, 200
         else:
             return make_response(
                 {'message': 'Must be logged in'},
@@ -84,13 +85,14 @@ class FormByID(Resource):
         if (form:= Form.find_by_id(id)):
             try:
                 data=request.get_json()
-                form.type: data['type']
-                form.answer1: data['answer1']
-                form.answer2: data['answer2']
-                form.answer3: data['answer3']
-                form.answer4: data['answer4']
-                form.answer5: data['answer5']
-                form.comments: data['comments']
+                print(data)
+                form.type = data['type']
+                form.answer1 = data['answer1']
+                form.answer2 = data['answer2']
+                form.answer3 = data['answer3']
+                form.answer4 = data['answer4']
+                form.answer5 = data['answer5']
+                form.comments = data['comments']
                 
                 db.session.add(form)
                 db.session.commit()
@@ -124,7 +126,8 @@ class Login(Resource):
 
                 session['employee_id'] = employee.id
                 session['employee_type'] = employee.type
-                session['employee_department_id'] = employee.department_id
+                session['employee_department_id'] = employee.department.id
+                session['employee_site_id'] = employee.site_id
                 return employee.to_dict(), 200
 
         return {'error': '401 Unauthorized'}, 401
@@ -157,6 +160,46 @@ class Questions(Resource):
                 {'message': 'Must be logged in'},
                 401
             )
+        
+class SafetyMessageByID(Resource):
+
+    def get(self,id):
+        if (message:= SafetyMessage.find_by_id(id)):
+            return message.to_dict(), 200
+        else:
+            return {'error':'Resource not found'}, 404
+        
+class ManagerDepartmentForms(Resource):
+
+    def get(self):
+        if session.get('employee_type') == 'manager':
+            department = Department.query.filter(
+                Department.id == session['employee_department_id']).first()
+            department_forms = [form.to_dict() 
+                        for form in department.forms]
+            sorted_forms = sorted(department_forms, key=lambda x: x['created_at'], reverse=True)
+            return sorted_forms, 200
+        else:
+            return make_response(
+                {'message': 'Access Denied, Managers only'},
+                403
+            )
+        
+class SiteForms(Resource):
+
+    def get(self):
+        if session.get('employee_type') == 'admin':
+            site = Site.query.filter(
+                Site.id == session['employee_site_id']).first()
+            site_forms = [form.to_dict() 
+                        for form in site.forms]
+            sorted_forms = sorted(site_forms, key=lambda x: x['created_at'], reverse=True)
+            return sorted_forms, 200
+        else:
+            return make_response(
+                {'message': 'Access Denied, Admins only'},
+                403
+            )
     
     
 api.add_resource(Login, '/login', endpoint='login')
@@ -166,6 +209,9 @@ api.add_resource(Forms, '/forms', endpoint='forms')
 api.add_resource(FormsHomeScreen,'/forms_homescreen', endpoint='forms_homescreen')
 api.add_resource(FormByID,'/forms/<int:id>')
 api.add_resource(Questions, '/questions', endpoint='questions')
+api.add_resource(SafetyMessageByID,'/safety_messages/<int:id>')
+api.add_resource(ManagerDepartmentForms, '/department_forms', endpoint='department_forms')
+api.add_resource(SiteForms, '/site_forms', endpoint='site_forms')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

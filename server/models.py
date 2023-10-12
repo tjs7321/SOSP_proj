@@ -34,7 +34,7 @@ class Employee(db.Model):
             self._password_hash, password.encode('utf-8'))
     
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f'<User {self.name}>'
 
     @classmethod
     def find_by_id(cls,id):
@@ -159,5 +159,22 @@ class QuestionList(db.Model):
             'question3':self.question3,
             'question4':self.question4,
             'question5':self.question5,
+        }
+    
+class SafetyMessage(db.Model):
+
+    __tablename__='safety_messages'
+
+    id = db.Column(db.Integer, primary_key=True)
+    phrase = db.Column(db.String, nullable=False)
+
+    @classmethod
+    def find_by_id(cls,id):
+        return cls.query.filter_by(id=id).first()
+    
+    def to_dict(self):
+        return {
+            'id':self.id,
+            'phrase':self.phrase,
         }
     

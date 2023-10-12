@@ -103,7 +103,7 @@ with app.app_context():
             site_id=site_id
         )
 
-        employee.password_hash = employee.name + 'password'
+        employee.password_hash = '12345'
 
         employees.append(employee)
 
@@ -174,6 +174,51 @@ with app.app_context():
 
     db.session.add_all(forms)
 
+    db.session.commit()
+
+    print("Creating messages...")
+
+    message1 = SafetyMessage(phrase="Safety is no accident.")
+    message2 = SafetyMessage(phrase="Never forget about safety.")
+    message3 = SafetyMessage(phrase="Best Be Safe Today.")
+    message4 = SafetyMessage(phrase="Stand up for safety.")
+    message5 = SafetyMessage(phrase="Our Goal—Zero Harm.")
+    message6 = SafetyMessage(phrase="We need you-work safely!")
+    message7 = SafetyMessage(phrase="Prevention is better than cure.")
+    message8 = SafetyMessage(phrase="Safety Is Free, Use Plenty Of It.")
+    message9 = SafetyMessage(phrase="Prepare & prevent instead of repair & repent.")
+    message10 = SafetyMessage(phrase="Stop! Think! Then act!")
+    message11 = SafetyMessage(phrase="KISS: Keep it Safe and Sound")
+    message12 = SafetyMessage(phrase="Zero compromise towards safety.")
+    message13 = SafetyMessage(phrase="Leave sooner, drive slower, live longer.")
+    message14 = SafetyMessage(phrase="If you don't think it will happen to you, find the person who had it happen to them.")
+    message15 = SafetyMessage(phrase="Safety first and last longer.")
+    message16 = SafetyMessage(phrase="Watch your step - it could be your last!")
+    message17 = SafetyMessage(phrase="Failure to prepare = Preparing to fail")
+    message18 = SafetyMessage(phrase="Just because you always did it that way, doesn't make it right.")
+    message19 = SafetyMessage(phrase="L is for lifting - Lift with your legs and leave your back out of it.")
+    message20 = SafetyMessage(phrase="Dare to be aware.")
+
+    db.session.add(message1)
+    db.session.add(message2)
+    db.session.add(message3)
+    db.session.add(message4)
+    db.session.add(message5)
+    db.session.add(message6)
+    db.session.add(message7)
+    db.session.add(message8)
+    db.session.add(message9)
+    db.session.add(message10)
+    db.session.add(message11)
+    db.session.add(message12)
+    db.session.add(message13)
+    db.session.add(message14)
+    db.session.add(message15)
+    db.session.add(message16)
+    db.session.add(message17)
+    db.session.add(message18)
+    db.session.add(message19)
+    db.session.add(message20)
     db.session.commit()
     
     print("Complete.")
