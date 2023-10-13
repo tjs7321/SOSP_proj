@@ -1,0 +1,9 @@
+.navbar{
+    display:block;
+    position: fixed;
+    justify-content: space-evenly;
+    width: 100%;
+    /* background-image: url("https://t4.ftcdn.net/jpg/04/19/21/31/360_F_419213157_putQsVw6dSwDIWeKOq1lxwMARUxr7bmm.jpg"); */
+    background-size: cover;
+    background-repeat:round;
+}
