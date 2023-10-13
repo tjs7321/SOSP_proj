@@ -34,9 +34,9 @@ with app.app_context():
     department1 = Department(name='Maintenance')
     department2 = Department(name='Operations')
     department3 = Department(name='Chemistry')
-    department4 = Department(name='Radiation protection')
-    department5 = Department(name='Supply chain')
-    department6 = Department(name='Site services')
+    department4 = Department(name='Radiation Protection')
+    department5 = Department(name='Supply Chain')
+    department6 = Department(name='Site Services')
     department7 = Department(name='Engineering')
 
     db.session.add(department1)
@@ -107,6 +107,10 @@ with app.app_context():
     db.session.add(employee2)
     db.session.add(employee3)
     db.session.add(employee4)
+    db.session.add(employee5)
+    db.session.add(employee6)
+    db.session.add(employee7)
+    db.session.add(employee8)
 
 
     for i in range(30):
