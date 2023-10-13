@@ -47,6 +47,7 @@ class Employee(db.Model):
             'type':self.type,
             'department_id':self.department_id,
             'site_id':self.site_id,
+            'department':self.department.name
         }
     
     @validates('type')
@@ -95,7 +96,7 @@ class Form(db.Model):
             'department_id':self.department_id,
             'site_id':self.site_id,
             'employee_id':self.employee_id,
-            "created_at":self.created_at.isoformat()
+            "created_at":self.created_at.isoformat(),
             # 'review_status':self.review_status,
         }
 

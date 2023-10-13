@@ -31,13 +31,13 @@ with app.app_context():
 
     print("Creating departments...")
 
-    department1 = Department(name='maintenance')
-    department2 = Department(name='operations')
-    department3 = Department(name='chemistry')
-    department4 = Department(name='radiation protection')
-    department5 = Department(name='supply chain')
-    department6 = Department(name='site services')
-    department7 = Department(name='engineering')
+    department1 = Department(name='Maintenance')
+    department2 = Department(name='Operations')
+    department3 = Department(name='Chemistry')
+    department4 = Department(name='Radiation protection')
+    department5 = Department(name='Supply chain')
+    department6 = Department(name='Site services')
+    department7 = Department(name='Engineering')
 
     db.session.add(department1)
     db.session.add(department2)
@@ -55,30 +55,53 @@ with app.app_context():
 
     employee_types = ['employee', 'manager', 'admin']
 
-    employee1= Employee(name='John Carges')
+    employee1 = Employee(name='Teddy Smith')
     employee1.password_hash = '12345'
-    employee1.type = 'manager'
-    employee1.department_id = 7
+    employee1.type = 'admin'
+    employee1.department_id = 1
     employee1.site_id = 1
 
-    employee2 = Employee(name='Teddy Smith')
+    employee2 = Employee(name='John Carges')
     employee2.password_hash = '12345'
-    employee2.type = 'admin'
+    employee2.type = 'manager'
     employee2.department_id = 1
     employee2.site_id = 1
 
     employee3 = Employee(name='BreElle Wells')
     employee3.password_hash = '12345'
     employee3.type = 'manager'
-    employee3.department_id = 6
+    employee3.department_id = 2
     employee3.site_id = 1
     
     employee4 = Employee(name='Curtis Odell')
     employee4.password_hash = '12345'
-    employee4.type = 'employee'
-    employee4.department_id = 1
+    employee4.type = 'manager'
+    employee4.department_id = 3
     employee4.site_id = 1
 
+    employee5 = Employee(name='Tess Merrill')
+    employee5.password_hash = '12345'
+    employee5.type = 'manager'
+    employee5.department_id = 4
+    employee5.site_id = 1
+
+    employee6 = Employee(name='Hiroki Kato')
+    employee6.password_hash = '12345'
+    employee6.type = 'manager'
+    employee6.department_id = 5
+    employee6.site_id = 1
+
+    employee7 = Employee(name='Farhan Hossain')
+    employee7.password_hash = '12345'
+    employee7.type = 'manager'
+    employee7.department_id = 6
+    employee7.site_id = 1
+
+    employee8 = Employee(name='Matthew Levin')
+    employee8.password_hash = '12345'
+    employee8.type = 'manager'
+    employee8.department_id = 6
+    employee8.site_id = 1
 
     db.session.add(employee1)
     db.session.add(employee2)
@@ -148,7 +171,7 @@ with app.app_context():
 
     print("Creating forms...")
     forms = []
-    for i in range(1000):
+    for i in range(5000):
 
         #choose an employee to submit a form
         id = random.randint(1,34)
@@ -156,6 +179,7 @@ with app.app_context():
         types = ['Meetings', 'Radiation Protection', 'Safety', 'Environmental']
         choices = ['Yes', 'No']
         comments = fake.paragraph(nb_sentences=4)
+        created_at = fake.date_time_this_year()
         
         form = Form(
             type=random.choice(types),
@@ -165,6 +189,7 @@ with app.app_context():
             answer4=random.choice(choices),
             answer5=random.choice(choices),
             comments=comments,
+            created_at=created_at,
             employee_id=employee.id,
             department_id=employee.department_id,
             site_id=employee.site_id
