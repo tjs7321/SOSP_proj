@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Button } from "../styles";
-import '../styles/NavBar.css'
+import React from "react"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
+import { Button } from "../styles"
 import { useHistory } from "react-router"
+import DarkModeToggle from "./DarkModeToggle"
 
 function NavBar({ employee, setEmployee }) {
 
@@ -21,8 +21,9 @@ function NavBar({ employee, setEmployee }) {
   if (employee.type === 'manager') {
     return (
       <Wrapper
-      // className="navbar"
+      className="navbar"
       >
+        <DarkModeToggle/>
         <Dropdown>
           <Button
           as={Link} to="/department_forms"
@@ -52,8 +53,9 @@ function NavBar({ employee, setEmployee }) {
   if (employee.type === 'employee') {
     return (
       <Wrapper
-      // className="navbar"
+      className="navbar"
       >
+        <DarkModeToggle/>
         <Logo>
           <Link to="/">Safety Submission Portal</Link>
         </Logo>
@@ -71,25 +73,25 @@ function NavBar({ employee, setEmployee }) {
   if (employee.type === 'admin') {
     return (
       <Wrapper
-      // className="navbar"
+      className="navbar"
       >
-        <Dropdown>
-          <Button
-          as={Link} to="/site_forms"
-          >
-              Site Forms
-          </Button>
-          <Button
-          as={Link} to="/site_chart_page"
-          >
-              Site Charts
-          </Button>
-        </Dropdown>
+        <DarkModeToggle/>
+            <Button
+            as={Link} to="/site_forms"
+            >
+                Site Forms
+            </Button>
+            <Button
+            as={Link} to="/site_chart_page"
+            >
+                Site Charts
+            </Button>
         <Logo>
           <Link to="/">Safety Submission Portal</Link>
         </Logo>
         <Nav>
-          <Button as={Link} to="/newForm">
+          <Button
+          as={Link} to="/newForm">
             New Submission
           </Button>
           <Button variant="outline" onClick={handleLogoutClick}>

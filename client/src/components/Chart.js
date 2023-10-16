@@ -9,7 +9,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement,
 
 export default function Chart({ forms }) {
 
-    console.log(forms)
+    // console.log(forms)
 
     function getMonthName(monthNumber) {
         const monthNames = [

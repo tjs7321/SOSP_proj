@@ -33,15 +33,16 @@ export default function SiteChartPage({employee}){
     }
 
     const separatedForms = separateFormsByDepartment(siteForms, 'department_id')
-    console.log(separatedForms[1])
+    // console.log(separatedForms[1])
     
     return(
         <div>
             <h1>Site {employee.site_id} Charts</h1>
             {Object.values(separatedForms).map(forms => (
                 <>
-                    <h1>{forms[0].department_id} Department Charts</h1>
+                    <h1>{forms[0].department}</h1>
                     <Chart
+                    key={forms[0].department}
                     forms={forms}
                     employee={employee}
                     />

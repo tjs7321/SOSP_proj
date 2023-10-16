@@ -11,6 +11,7 @@ import DepartmentForms from "../pages/DepartmentForms"
 import SiteForms from "../pages/SiteForms"
 import DepartmentChartPage from "../pages/DepartmentChartPage"
 import SiteChartPage from "../pages/SiteChartPage"
+import { ThemeProvider } from "../context/ThemeContext"
 
 function App() {
   const [employee, setEmployee] = useState(null)
@@ -38,7 +39,7 @@ function App() {
   if (!employee) return <Login onLogin={setEmployee} />
 
   return (
-    <>
+    <ThemeProvider>
       <div
       className="background"
       >
@@ -89,7 +90,7 @@ function App() {
             </Route>
           </Switch>
       </div>
-    </>
+    </ThemeProvider>
   );
 }
 

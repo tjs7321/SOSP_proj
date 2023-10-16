@@ -11,7 +11,8 @@ export default function FormDetailPage({employee, questionLists}) {
 
     const {id} = useParams()
     const [formInfo, setFormInfo] = useState({
-        'type': 'Meetings',
+        'department': '',
+        'type': '',
         'answer1':'',
         'answer2':'',
         'answer3':'',
@@ -34,6 +35,7 @@ export default function FormDetailPage({employee, questionLists}) {
             if (r.ok) {
                 return r.json().then(data=> {
                     setFormInfo({
+                        'department':data['department'],
                         'type':data['type'],
                         'answer1':data['answer1'],
                         'answer2':data['answer2'],
@@ -149,7 +151,7 @@ export default function FormDetailPage({employee, questionLists}) {
     }  else {
         return (
             <div>
-                <h1>Form Detail Page for form {id}!</h1>
+                <h1>Loading...</h1>
             </div>
         )
     }

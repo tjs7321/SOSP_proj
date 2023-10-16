@@ -9,16 +9,13 @@ export default function FormDetailContainer({handleSubmit, handleCategoryChange,
         return moment(isodate).format('MM-DD-YYYY h:mm')
     }
 
-    // console.log(formEmployeeID)
-    // console.log(employee)
-    // console.log(questions)
-
     if (questions === undefined){
         return <h1>Loading...</h1>
     } else{if (formEmployeeID === employee.id){
         if (!editing) {
             return (
                 <div>
+                    <h1>Department: {formInfo['department']}</h1>
                     <h1>{formInfo['type']}</h1>
                     <div>
                         <h4>{questions.question1}</h4>
@@ -61,6 +58,7 @@ export default function FormDetailContainer({handleSubmit, handleCategoryChange,
     } else {
         return (
             <div>
+                <h1>Department: {formInfo['department']}</h1>
                 <h1>{formInfo['type']}</h1>
                 <div>
                     <h4>{questions.question1}</h4>

@@ -97,7 +97,7 @@ class Form(db.Model):
             'site_id':self.site_id,
             'employee_id':self.employee_id,
             "created_at":self.created_at.isoformat(),
-            # 'review_status':self.review_status,
+            'department':self.department.name
         }
 
     # def to_dict_full(self):
