@@ -1,10 +1,25 @@
+:root {
+  --background-light: #fbca04;
+  --background-dark: #0234fd;
+  --text-light: black;
+  --text-dark: white;
+  --button-bg-light: transparent;
+  --button-bg-dark: transparent;
+  --button-hover-bg-light: rgb(255, 153, 0);
+  --button-hover-bg-dark: rgb(100, 100, 100);
+}
+
 .background {
-  /* background-image: url("https://t4.ftcdn.net/jpg/01/61/25/33/360_F_161253322_Z7K0uxt3clpAToWwQ9d4PlItg7vHc4F2.jpg"); */
-  background-color: yellow;
+  background-color: var(--background-light);
+  color: var(--text-light);
   background-size: cover;
   background-position: center;
   background-repeat:no-repeat;
-  background-attachment: fixed;
   width: 100vw;
   height: 100vh;
+}
+
+.background.dark-mode {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
 }

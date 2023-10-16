@@ -13,7 +13,7 @@ function Login({ onLogin }) {
             </>
         </Wrapper>
     );
-    }
+}
 
     const Logo = styled.h1`
     font-family: "Roboto", cursive;

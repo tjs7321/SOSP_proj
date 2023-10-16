@@ -1,0 +1,52 @@
+:root {
+    --background-light: #fbca04;
+    --background-dark: #0234fd;
+    --text-light: black;
+    --text-dark: white;
+    --button-bg-light: transparent;
+    --button-bg-dark: transparent;
+    --button-hover-bg-light: rgb(255, 153, 0);
+    --button-hover-bg-dark: rgb(100, 100, 100);
+}
+
+.home {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-smart;
+    align-items: center;
+    gap: 1rem;
+    height: 100vh;
+    padding-top: 30px; /*subject to change*/
+}
+
+.home.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+.formCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.5rem;
+    gap: 1rem;
+    background-color: #E1C16E;
+    border-radius: 10px;
+    width: 250px;
+    height: 400px;
+    flex-shrink: 0;
+    filter: drop-shadow(1px, 2px, 0.2rem gray);
+    background-image: url("https://openclipart.org/image/800px/233557"), url("https://t4.ftcdn.net/jpg/02/18/47/97/360_F_218479727_gP89LrAKcNdJvIHtklm0XNElCcvgU831.jpg");
+    background-size: cover;
+    background-repeat:round;
+    margin: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}

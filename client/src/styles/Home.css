@@ -1,0 +1,98 @@
+:root {
+    --background-light: #fbca04;
+    --background-dark: #0234fd;
+    --text-light: black;
+    --text-dark: white;
+    --button-bg-light: transparent;
+    --button-bg-dark: transparent;
+    --button-hover-bg-light: rgb(255, 153, 0);
+    --button-hover-bg-dark: rgb(100, 100, 100);
+}
+
+.home {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-smart;
+    align-items: center;
+    gap: 1rem;
+    height: 100vh;
+    padding-top: 30px; /*subject to change*/
+}
+
+.home.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+.recentSubmissions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin: 50px;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.safetyMessage {
+    color:#000000;
+    font-size: 25px;
+    font-family: broadway;
+    color: #cb9100bf;
+    -webkit-text-stroke: 1.5px #795600;
+    text-decoration: none;
+    background-image: url("https://t4.ftcdn.net/jpg/02/18/47/97/360_F_218479727_gP89LrAKcNdJvIHtklm0XNElCcvgU831.jpg");
+    background-size: cover;
+    background-repeat:round;
+    border-radius: 20%;
+    border: ridge;
+    border-color: #ffd700;
+    cursor: default;
+}
+
+.home div{
+    border-radius: 6px;
+    border-radius: 6px;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
+    padding: 16px;
+}
+
+.home button{
+    display: block;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    font-family: "Roboto", cursive;
+    font-size: 1rem;
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: var(--button-bg-light);
+}
+
+.home.dark-mode button {
+    background-color: var(--button-bg-dark);
+    color: var(--text-dark);
+}
+
+.home button:hover{
+    background-color: rgb(255, 153, 0);
+}
+
+.home.dark-mode button:hover {
+    background-color: var(--button-hover-bg-dark);
+}
+
+.navLink{
+    text-decoration: inherit;
+    color: inherit;
+}

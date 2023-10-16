@@ -1,13 +1,15 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
-import styled from "styled-components"
-import { Button } from "../styles"
 import { useHistory } from "react-router"
 import DarkModeToggle from "./DarkModeToggle"
+import '../styles/NavBar.css'
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
+import { ThemeContext } from "../context/ThemeContext"
 
-function NavBar({ employee, setEmployee }) {
+export default function NavBar({ employee, setEmployee }) {
 
   const history = useHistory()
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext)
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -18,123 +20,111 @@ function NavBar({ employee, setEmployee }) {
     });
   }
 
+  if (employee === undefined){
+    return (
+      <nav
+      className={`navbar ${darkMode ? 'dark-mode' : ''}`}
+      ></nav>
+    )
+  }
+
   if (employee.type === 'manager') {
     return (
-      <Wrapper
-      className="navbar"
+      <nav
+      className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
         <DarkModeToggle/>
-        <Dropdown>
-          <Button
-          as={Link} to="/department_forms"
+        <NavLink to="/department_forms" className="navLink">
+            <button
+            as={Link} to="/department_forms"
+            >
+                Department Forms
+            </button>
+        </NavLink>
+        <NavLink to="/department_chart_page" className="navLink">
+            <button
+            as={Link} to="/department_chart_page"
+            >
+                Department Charts
+            </button>
+        </NavLink>
+        <NavLink className="navLink"
+          to="/">
+          <h1>Safety Submission Portal
+          </h1>
+        </NavLink>
+        <NavLink to="/newForm" className="navLink">
+          <button
           >
-              Department Forms
-          </Button>
-          <Button
-          as={Link} to='/department_chart_page'
-          >
-              Department Charts
-          </Button>
-        </Dropdown>
-        <Logo>
-          <Link to="/">Safety Submission Portal</Link>
-        </Logo>
-        <Nav>
-          <Button as={Link} to="/newForm">
-            New Submission
-          </Button>
-          <Button variant="outline" onClick={handleLogoutClick}>
-            Logout
-          </Button>
-        </Nav>
-      </Wrapper>
+                New Submission
+          </button>
+        </NavLink>
+        <button
+        onClick={handleLogoutClick}>
+          Logout
+        </button>
+      </nav>
     )}
 
   if (employee.type === 'employee') {
     return (
-      <Wrapper
-      className="navbar"
+      <nav
+      className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
         <DarkModeToggle/>
-        <Logo>
-          <Link to="/">Safety Submission Portal</Link>
-        </Logo>
-        <Nav>
-          <Button as={Link} to="/newForm">
-            New Submission
-          </Button>
-          <Button variant="outline" onClick={handleLogoutClick}>
-            Logout
-          </Button>
-        </Nav>
-      </Wrapper>
+        <NavLink className="navLink"
+          to="/">
+          <h1>Safety Submission Portal
+          </h1>
+        </NavLink>
+        <NavLink to="/newForm" className="navLink">
+          <button
+          >
+                New Submission
+          </button>
+        </NavLink>
+        <button
+        onClick={handleLogoutClick}>
+          Logout
+        </button>
+      </nav>
     )}
   
   if (employee.type === 'admin') {
     return (
-      <Wrapper
-      className="navbar"
+      <nav
+      className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
         <DarkModeToggle/>
-            <Button
+        <NavLink to="/site_forms" className="navLink">
+            <button
             as={Link} to="/site_forms"
             >
                 Site Forms
-            </Button>
-            <Button
+            </button>
+          </NavLink>
+          <NavLink to="/site_chart_page" className="navLink">
+            <button
             as={Link} to="/site_chart_page"
             >
                 Site Charts
-            </Button>
-        <Logo>
-          <Link to="/">Safety Submission Portal</Link>
-        </Logo>
-        <Nav>
-          <Button
-          as={Link} to="/newForm">
-            New Submission
-          </Button>
-          <Button variant="outline" onClick={handleLogoutClick}>
-            Logout
-          </Button>
-        </Nav>
-      </Wrapper>
+            </button>
+          </NavLink>
+        <NavLink className="navLink"
+          to="/">
+          <h1>Safety Submission Portal
+          </h1>
+        </NavLink>
+        <NavLink to="/newForm" className="navLink">
+          <button
+          >
+                New Submission
+          </button>
+        </NavLink>
+        <button
+        onClick={handleLogoutClick}>
+          Logout
+        </button>
+      </nav>
     )}
 }
-
-
-const Wrapper = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-`;
-
-const Logo = styled.h1`
-  font-family: "Roboto", cursive;
-  font-size: 3rem;
-  color: black;
-  margin: 0;
-  line-height: 1;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 4px;
-  position: absolute;
-  right: 8px;
-`;
-
-const Dropdown = styled.nav`
-  display: flex;
-  gap: 4px;
-  position: left-align;
-  right: 8px;
-`;
-
-export default NavBar;

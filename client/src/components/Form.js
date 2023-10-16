@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react"
-import ReactMarkdown from "react-markdown"
-import { Link } from "react-router-dom"
-import styled from "styled-components"
-import { Box, Button } from "../styles"
 import moment from 'moment-timezone'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
+import '../styles/Home.css'
 
 export default function Form({id, type, created_at}){
 
@@ -14,11 +10,14 @@ export default function Form({id, type, created_at}){
     }
 
     return(
-        <Box>
-            <NavLink
-            to={`/forms/${id}`}
-            >{type} Form</NavLink>
+        <NavLink
+        className="navLink"
+        to={`/forms/${id}`}
+        >
+            <div className="formCard">
+                <h2>{type} Form</h2>
             <h3>Submitted at: {formatDate(created_at)}</h3>
-        </Box>
+            </div>
+        </NavLink>
     )
 }

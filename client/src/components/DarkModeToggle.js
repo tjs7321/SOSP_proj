@@ -10,7 +10,7 @@ function DarkModeToggle() {
       <button
       className="nav-item"
       onClick={() => toggleDarkMode()}>
-        {darkMode ? '🌘' : '🌞'}
+        {darkMode ? '☽︎' : '☀'}
       </button>
     </>
   );

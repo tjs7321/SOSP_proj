@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { Switch, Route } from "react-router-dom"
 import NavBar from "./NavBar"
 import Login from "../pages/Login"
@@ -11,11 +11,12 @@ import DepartmentForms from "../pages/DepartmentForms"
 import SiteForms from "../pages/SiteForms"
 import DepartmentChartPage from "../pages/DepartmentChartPage"
 import SiteChartPage from "../pages/SiteChartPage"
-import { ThemeProvider } from "../context/ThemeContext"
+import { ThemeContext } from "../context/ThemeContext"
 
 function App() {
   const [employee, setEmployee] = useState(null)
   const [questionLists, setQuestionLists] = useState([])
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext)
 
   useEffect(() => {
     fetch("/check_session").then((r) => {
@@ -36,12 +37,17 @@ function App() {
     })
   }, [])
 
-  if (!employee) return <Login onLogin={setEmployee} />
+  if (!employee) return (
+      <div
+      className={`background ${darkMode ? 'dark-mode' : ''}`}>
+        <NavBar></NavBar>
+        <Login onLogin={setEmployee} />
+      </div>
+  )
 
   return (
-    <ThemeProvider>
       <div
-      className="background"
+      className={`background ${darkMode ? 'dark-mode' : ''}`}
       >
         <NavBar employee={employee} setEmployee={setEmployee} />
           <Switch>
@@ -90,7 +96,6 @@ function App() {
             </Route>
           </Switch>
       </div>
-    </ThemeProvider>
   );
 }
 
