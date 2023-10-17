@@ -1,13 +1,11 @@
-import { useState } from "react";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
-import { Button } from "../styles";
 
 function Login({ onLogin }) {
 
     return (
         <Wrapper>
-        <Logo>For the Love of Safety</Logo>
+        <Logo>Safety Submission Portal</Logo>
             <>
             <LoginForm onLogin={onLogin} />
             </>

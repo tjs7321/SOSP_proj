@@ -49,7 +49,8 @@ function App() {
       <div
       className={`background ${darkMode ? 'dark-mode' : ''}`}
       >
-        <NavBar employee={employee} setEmployee={setEmployee} />
+        {employee === null ? null :
+        <NavBar employee={employee} setEmployee={setEmployee} />}
           <Switch>
             <Route path="/newForm">
               <NewForm

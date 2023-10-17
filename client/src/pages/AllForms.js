@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Box, Button } from "../styles";
-import Form from "../components/Form";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect, useState, useContext } from "react"
+import styled from "styled-components"
+import Form from "../components/Form"
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
+import '../styles/FormLists.css'
+import { ThemeContext } from "../context/ThemeContext"
 
 export default function AllForms(){
 
     const [forms, setForms] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
     const formsPerPage = 10
 
     useEffect(() => {
@@ -35,7 +36,7 @@ export default function AllForms(){
     }
 
     return (
-        <div>
+        <div className={`forms ${darkMode ? 'dark-mode' : ''}`}>
             <h1>All Submissions</h1>
             {displayedForms.length > 0 ? (
                 displayedForms.map((form) => (
@@ -56,24 +57,19 @@ export default function AllForms(){
                 </>
             )}
             <Pagination>
-                <Button onClick={handlePrevPage} disabled={currentPage === 1}>
+                <button onClick={handlePrevPage} disabled={currentPage === 1}>
                 Previous Page
-                </Button>
+                </button>
                 <p>
                 Page {currentPage} of {totalPages}
                 </p>
-                <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages}>
                 Next Page
-                </Button>
+                </button>
             </Pagination>
         </div>
     )
 }
-
-const Wrapper = styled.section`
-    max-width: 800px;
-    margin: 40px auto;
-`;
 
 const Pagination = styled.div`
     display: flex;

@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Box, Button } from "../styles";
-import moment from 'moment-timezone'
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import Form from "../components/Form";
+import { useEffect, useState, useContext } from "react"
 import Chart from "../components/Chart";
+import { ThemeContext } from "../context/ThemeContext"
+import '../styles/Charts.css'
 
 export default function DepartmentChartPage({employee}){
 
     const [departmentForms, setDepartmentForms] = useState([])
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
 
     useEffect(() => {
         fetch("/department_forms")
@@ -19,12 +15,14 @@ export default function DepartmentChartPage({employee}){
     }, [])
     
     return(
-        <div>
+        <div className={`charts ${darkMode ? 'dark-mode' : ''}`}>
             <h1>{employee.department} Department Charts</h1>
-            <Chart
-            forms={departmentForms}
-            employee={employee}
-            />
+            <div>
+                <Chart
+                forms={departmentForms}
+                employee={employee}
+                />
+            </div>
         </div>
     )
 }

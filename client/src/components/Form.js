@@ -1,6 +1,6 @@
 import moment from 'moment-timezone'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
-import '../styles/Home.css'
+import '../styles/FormLists.css'
 
 export default function Form({id, type, created_at}){
 
@@ -16,7 +16,7 @@ export default function Form({id, type, created_at}){
         >
             <div className="formCard">
                 <h2>{type} Form</h2>
-            <h3>Submitted at: {formatDate(created_at)}</h3>
+            <h3>{formatDate(created_at)}</h3>
             </div>
         </NavLink>
     )

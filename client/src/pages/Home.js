@@ -1,9 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Box, Button } from "../styles";
-import moment from 'moment-timezone'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import Form from "../components/Form";
 import '../styles/Home.css'
@@ -35,9 +31,11 @@ export default function Home({employee}) {
 
   return (
     <div className={`home ${darkMode ? 'dark-mode' : ''}`}>
-      <h1>Welcome, {employee.name}!</h1>
-      <div className="safetyMessage">
-        {safetyMessage}
+      <div id="subHeader">
+        <h1>Welcome, {employee.name}!</h1>
+        <h1>
+          {safetyMessage}
+        </h1>
       </div>
       <h1>Your Recent Submissions</h1>
       <div className="recentSubmissions">

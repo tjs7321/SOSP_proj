@@ -22,9 +22,7 @@ export default function NavBar({ employee, setEmployee }) {
 
   if (employee === undefined){
     return (
-      <nav
-      className={`navbar ${darkMode ? 'dark-mode' : ''}`}
-      ></nav>
+      null
     )
   }
 

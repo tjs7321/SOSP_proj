@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Box, Button } from "../styles";
-import moment from 'moment-timezone'
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import Form from "../components/Form";
+import { useEffect, useState, useContext } from "react"
 import Chart from "../components/Chart";
+import { ThemeContext } from "../context/ThemeContext"
+import '../styles/Charts.css'
 
 export default function SiteChartPage({employee}){
 
     const [siteForms, setSiteForms] = useState([])
+    const [sortValue, setSortValue] = useState('Maintenance')
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
 
     useEffect(() => {
         fetch("/site_forms")
@@ -18,36 +15,39 @@ export default function SiteChartPage({employee}){
             .then(setSiteForms)
     }, [])
 
-    function separateFormsByDepartment(list, key) {
-        const separatedForms = {}
+    function handleSortChange(e) {
+		setSortValue(e.target.value)
+	}
 
-        for (const form of list) {
-            const value = form[key];
-            if (!separatedForms[value]) {
-                separatedForms[value] = []
-            }
-            separatedForms[value].push(form)
-        }
-
-        return separatedForms
+    if (!siteForms){
+        return <h1>Loading...</h1>
     }
 
-    const separatedForms = separateFormsByDepartment(siteForms, 'department_id')
-    // console.log(separatedForms[1])
+    const filteredForms = siteForms
+        .filter((form) => form.department === sortValue)
+
+    if (!filteredForms){
+        return <h1>Loading...</h1>
+    }
     
     return(
-        <div>
-            <h1>Site {employee.site_id} Charts</h1>
-            {Object.values(separatedForms).map(forms => (
-                <>
-                    <h1>{forms[0].department}</h1>
-                    <Chart
-                    key={forms[0].department}
-                    forms={forms}
-                    employee={employee}
-                    />
-                </>
-            ))}
+        <div className={`charts ${darkMode ? 'dark-mode' : ''}`}>
+            <select onChange={handleSortChange}>
+                <option>Maintenance</option>
+                <option>Operations</option>
+                <option>Chemistry</option>
+                <option>Radiation Protection</option>
+                <option>Supply Chain</option>
+                <option>Site Services</option>
+                <option>Engineering</option>
+            </select>
+            <h1>{sortValue}</h1>
+            <div>
+                <Chart
+                forms={filteredForms}
+                employee={employee}
+                />
+            </div>
         </div>
     )
 }

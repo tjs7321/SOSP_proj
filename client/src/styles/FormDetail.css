@@ -9,7 +9,7 @@
     --button-hover-bg-dark: rgb(100, 100, 100);
 }
 
-.home {
+.formDetail {
     background-color: var(--background-light);
     color: var(--text-light);
     background-size: cover;
@@ -25,7 +25,19 @@
     padding-top: 30px;
 }
 
-.home.dark-mode {
+#formContent {
+    display: contents;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin: 50px;
+    flex-wrap: wrap;
+    border-style: outset;
+    border-color: #6e6e6e;
+}
+
+.formDetail.dark-mode {
     background-color: var(--background-dark);
     color: var(--text-dark);
     height: 100%;
@@ -49,13 +61,35 @@
     border: none;
 }
 
-.home div{
+.formDetail div{
     border-radius: 6px;
-    padding: 16px;
+    padding: 5px;
     border-style: outset;
+    margin: 10px;
+    border-color: #6e6e6e;
 }
 
-.home button{
+#questions {
+    padding: 5px;
+    margin: 10px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+#questionAnswers{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: stretch;
+    border: none;
+}
+
+.formDetail button{
     display: block;
     height: 100%;
     width: 100%;
@@ -68,16 +102,16 @@
     background-color: var(--button-bg-light);
 }
 
-.home.dark-mode button {
+.formDetail.dark-mode button {
     background-color: var(--button-bg-dark);
     color: var(--text-dark);
 }
 
-.home button:hover{
+.formDetail button:hover{
     background-color: rgb(255, 153, 0);
 }
 
-.home.dark-mode button:hover {
+.formDetail.dark-mode button:hover {
     background-color: var(--button-hover-bg-dark);
 }
 
@@ -86,7 +120,7 @@
     color: inherit;
 }
 
-.home h1 {
+.formDetail h1 {
     /* border-style: outset; */
     /* border-radius: 6px; */
     padding: 8px;
@@ -94,7 +128,7 @@
     margin: 2px;
 }
 
-.home h2, h3 {
+.formDetail h2, h3 {
     padding: 2px;
     margin: 2px;
 }

@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router"
-import styled from "styled-components"
-import ReactMarkdown from "react-markdown"
-import { Button, Error, FormField, Input, Label, Textarea, Wrapper, WrapperChild } from "../styles"
+import '../styles/NewForm.css'
+import { ThemeContext } from "../context/ThemeContext"
 
 function NewForm({ employee, questionLists}) {
 
@@ -19,9 +18,11 @@ function NewForm({ employee, questionLists}) {
   const [isLoading, setIsLoading] = useState(false)
   const [category, setCategory] = useState('Meetings')
   const history = useHistory()
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext)
   const employee_id = employee.id
   const department_id = employee.department_id
   const site_id = employee.site_id
+  const maxCharacters = 500
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -55,11 +56,12 @@ function NewForm({ employee, questionLists}) {
   }
 
   function handleTextChange(e) {
-        
-    setNewForm({
-      ...newForm,
-      [e.target.name]: e.target.value
-    })
+    if (e.target.value.length <= maxCharacters){
+      setNewForm({
+        ...newForm,
+        [e.target.name]: e.target.value
+      })
+    }
   }
 
   // console.log(questionLists)
@@ -77,8 +79,8 @@ function NewForm({ employee, questionLists}) {
   if (questionLists.length === 4) {
   
   return (
-    <Wrapper>
-      <WrapperChild>
+    <div className={`newForm ${darkMode ? 'dark-mode' : ''}`}>
+      <div  id="form">
         <h2>Submit a Safety Observation</h2>
         <select
         value={newForm.type}
@@ -99,106 +101,127 @@ function NewForm({ employee, questionLists}) {
             Environmental
           </option>
         </select>
-        <form onSubmit={handleSubmit}>
-          <FormField>
-            <label>
+        <form
+        onSubmit={handleSubmit}
+        >
+          <div>
+            <div id="questions">
+              <label>
                 {questions.question1}
-                <select
-                value={newForm.answer1}
-                name="answer1"
-                onChange={handleTextChange}
-                >
-                    <option value="Yes">
-                        Yes
-                    </option>
-                    <option value="No">
-                        No
-                    </option>
-                </select>
-            </label>
-            <label>
+                  <div id="questionAnswers">
+                    <select
+                    value={newForm.answer1}
+                    name="answer1"
+                    onChange={handleTextChange}
+                    >
+                        <option value="Yes">
+                            Yes
+                        </option>
+                        <option value="No">
+                            No
+                        </option>
+                    </select>
+                  </div>
+              </label>
+            </div>
+            <div id="questions">
+              <label>
                 {questions.question2}
-                <select
-                value={newForm.answer2}
-                name="answer2"
-                onChange={handleTextChange}
-                >
-                    <option value="Yes">
-                        Yes
-                    </option>
-                    <option value="No">
-                        No
-                    </option>
-                </select>
-            </label>
-            <label>
-                {questions.question3}
-                <select
-                value={newForm.answer3}
-                name="answer3"
-                onChange={handleTextChange}
-                >
-                    <option value="Yes">
-                        Yes
-                    </option>
-                    <option value="No">
-                        No
-                    </option>
-                </select>
-            </label>
-            <label>
-                {questions.question4}
-                <select
-                value={newForm.answer4}
-                name="answer4"
-                onChange={handleTextChange}
-                >
-                    <option value="Yes">
-                        Yes
-                    </option>
-                    <option value="No">
-                        No
-                    </option>
-                </select>
-            </label>
+                  <div id="questionAnswers">
+                    <select
+                    value={newForm.answer2}
+                    name="answer2"
+                    onChange={handleTextChange}
+                    >
+                        <option value="Yes">
+                            Yes
+                        </option>
+                        <option value="No">
+                            No
+                        </option>
+                    </select>
+                  </div>
+              </label>
+            </div>
+            <div id="questions">
+              <label>
+                  {questions.question3}
+                  <div id="questionAnswers">
+                    <select
+                    value={newForm.answer3}
+                    name="answer3"
+                    onChange={handleTextChange}
+                    >
+                        <option value="Yes">
+                            Yes
+                        </option>
+                        <option value="No">
+                            No
+                        </option>
+                    </select>
+                  </div>
+              </label>
+            </div>
+            <div id="questions">
+              <label>
+                  {questions.question4}
+                  <div id="questionAnswers">
+                    <select
+                    value={newForm.answer4}
+                    name="answer4"
+                    onChange={handleTextChange}
+                    >
+                        <option value="Yes">
+                            Yes
+                        </option>
+                        <option value="No">
+                            No
+                        </option>
+                    </select>
+                  </div>
+              </label>
+            </div>
+            <div id="questions">
             <label>
                 {questions.question5}
-                <select
-                value={newForm.answer5}
-                name="answer5"
-                onChange={handleTextChange}
-                >
-                    <option value="Yes">
-                        Yes
-                    </option>
-                    <option value="No">
-                        No
-                    </option>
-                </select>
+                <div id="questionAnswers">
+                  <select
+                  value={newForm.answer5}
+                  name="answer5"
+                  onChange={handleTextChange}
+                  >
+                      <option value="Yes">
+                          Yes
+                      </option>
+                      <option value="No">
+                          No
+                      </option>
+                  </select>
+                </div>
             </label>
-            <div>
-                <input
+            
+            </div>
+              <textarea
                 required
-                type="text"
                 placeholder="Comments"
                 name="comments"
                 onChange={handleTextChange}
-                value={newForm.comments}/>
-            </div>
-          </FormField>
-          <FormField>
-            <Button color="primary" type="submit">
-              {isLoading ? "Loading..." : "Submit Form"}
-            </Button>
-          </FormField>
-          <FormField>
-            {errors.map((err) => (
-              <Error key={err}>{err}</Error>
-            ))}
-          </FormField>
+                value={newForm.comments}
+                rows={5}  // Adjust the number of visible rows
+                cols={50} // Adjust the number of visible characters per row
+              />
+              {newForm.comments.length >= (maxCharacters - 25) ? (
+                <h4 style={{ fontSize: '12px', color: newForm.comments.length >= maxCharacters ? 'red' : 'black' }}>
+                  {maxCharacters - newForm.comments.length} characters remaining (maximum {maxCharacters} characters).
+                </h4>
+              ) : null}
+          </div>
+          <button color="primary" type="submit">
+            {isLoading ? "Loading..." : "Submit Form"}
+          </button>
         </form>
-      </WrapperChild>
-    </Wrapper>
+      </div>
+    </div>
   )}
 
   else return(

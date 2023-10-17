@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Box, Button } from "../styles";
-import Form from "../components/Form";
+import { useEffect, useState, useContext } from "react"
+import { Link } from "react-router-dom"
+import Form from "../components/Form"
+import { ThemeContext } from "../context/ThemeContext"
+import '../styles/FormLists.css'
 
 export default function SiteForms(){
 
     const [siteForms, setSiteForms] = useState(null)
     const [sortValue, setSortValue] = useState('Maintenance')
     const [currentPage, setCurrentPage] = useState(1)
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
     const formsPerPage = 10
 
     useEffect(() => {
@@ -44,16 +45,18 @@ export default function SiteForms(){
     }
 
     return (
-        <Wrapper>
-            <select onChange={handleSortChange}>
-                <option>Maintenance</option>
-                <option>Operations</option>
-                <option>Chemistry</option>
-                <option>Radiation Protection</option>
-                <option>Supply Chain</option>
-                <option>Site Services</option>
-                <option>Engineering</option>
-            </select>
+        <div className={`forms ${darkMode ? 'dark-mode' : ''}`}>
+            <div>
+                <select onChange={handleSortChange}>
+                    <option>Maintenance</option>
+                    <option>Operations</option>
+                    <option>Chemistry</option>
+                    <option>Radiation Protection</option>
+                    <option>Supply Chain</option>
+                    <option>Site Services</option>
+                    <option>Engineering</option>
+                </select>
+            </div>
             <h1>{filteredForms[0].department} Forms</h1>
             {filteredForms.length > 0 ? (
                 displayedForms.map((form) => (
@@ -66,44 +69,22 @@ export default function SiteForms(){
             ) : (
                 <>
                 <h2>403: Access Denied</h2>
-                <Button as={Link} to="/">
+                <button as={Link} to="/">
                     Go Back Home
-                </Button>
+                </button>
                 </>
             )}
-            <Pagination>
-                <Button onClick={handlePrevPage} disabled={currentPage === 1}>
+            <div id="pagination">
+                <button onClick={handlePrevPage} disabled={currentPage === 1}>
                 Previous Page
-                </Button>
-                <p>
-                Page {currentPage} of {totalPages}
-                </p>
-                <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                </button>
+                    <p>
+                    Page {currentPage} of {totalPages}
+                    </p>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages}>
                 Next Page
-                </Button>
-            </Pagination>
-        </Wrapper>
+                </button>
+            </div>
+        </div>
     )
 }
-
-const Wrapper = styled.section`
-    max-width: 800px;
-    margin: 40px auto;
-`
-
-const Pagination = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-
-    button {
-        padding: 10px 20px;
-        border: 1px solid #ccc;
-        cursor: pointer;
-
-        &:disabled {
-        background-color: #f3f3f3;
-        cursor: not-allowed;
-        }
-    }
-`

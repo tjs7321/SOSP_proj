@@ -1,9 +1,5 @@
 import React, {useState} from 'react'
-import Datetime from 'react-datetime'
 import "react-datetime/css/react-datetime.css"
-import moment from 'moment-timezone'
-
-import ErrorMessage from './ErrorMessage';
 
 export default function FormEdit({questions, formInfo, handleSubmit,
     onCancel, handleCategoryChange, handleTextChange}) {
@@ -18,7 +14,6 @@ export default function FormEdit({questions, formInfo, handleSubmit,
     return (
         <div>
             <h2>Edit Form</h2>
-            <ErrorMessage error={errorMessage}/>
             <div>
                 <form onSubmit={(e) => submitClick(e)}>
                 <select
@@ -136,14 +131,12 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         onChange={handleTextChange}
                         value={formInfo.comments}/>
                     </div>
-                    <div>
-                        <button
-                        type="submit"
-                        >Submit</button>
-                        <button
-                        onClick={onCancel}
-                        >Cancel</button>
-                    </div>
+                    <button
+                    type="submit"
+                    >Submit</button>
+                    <button
+                    onClick={onCancel}
+                    >Cancel</button>
                 </form>
             </div>
         </div>

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import { useEffect, useState, useContext } from "react"
 import { useHistory } from "react-router-dom";
-import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import FormEdit from "../components/FormEdit";
 import FormDetailContainer from "../components/FormDetailContainer";
+import { ThemeContext } from "../context/ThemeContext"
+import '../styles/FormDetail.css'
 
 
 export default function FormDetailPage({employee, questionLists}) {
@@ -27,6 +27,7 @@ export default function FormDetailPage({employee, questionLists}) {
     const [error, setError] = useState(false)
     const [category, setCategory] = useState(formInfo.type)
     const [formEmployeeID, setFormEmployeeID] = useState(1)
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
     const history = useHistory()
 
     useEffect(()=> {
@@ -126,7 +127,7 @@ export default function FormDetailPage({employee, questionLists}) {
     // PAGE RENDER
     if (formInfo['type']) {
         return (
-            <div>
+            <div className={`formDetail ${darkMode ? 'dark-mode' : ''}`}>
                 <FormDetailContainer
                 handleSubmit={handleSubmit}
                 handleCategoryChange={handleCategoryChange}
@@ -143,14 +144,14 @@ export default function FormDetailPage({employee, questionLists}) {
         )
     } else if (error) {
         return (
-            <div>
+            <div className={`formDetail ${darkMode ? 'dark-mode' : ''}`}>
                 <h1>Could not find form</h1>
                 <button onClick={()=>history.push('/')}>Return to homepage?</button>
             </div>
         )
     }  else {
         return (
-            <div>
+            <div className={`formDetail ${darkMode ? 'dark-mode' : ''}`}>
                 <h1>Loading...</h1>
             </div>
         )

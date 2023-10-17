@@ -1,11 +1,11 @@
 :root {
-  --background-light: #fbca04;
-  --background-dark: #0234fd;
+  --background-light: #f2f2f2;
+  --background-dark: #2b2b2b;
   --text-light: black;
-  --text-dark: white;
-  --button-bg-light: transparent;
-  --button-bg-dark: transparent;
-  --button-hover-bg-light: rgb(255, 153, 0);
+  --text-dark: rgb(160, 160, 160);
+  --button-bg-light: rgb(236 197 4);
+  --button-bg-dark: rgb(3, 0, 199);
+  --button-hover-bg-light: rgb(255, 187, 0);
   --button-hover-bg-dark: rgb(100, 100, 100);
 }
 
@@ -15,11 +15,40 @@
   background-size: cover;
   background-position: center;
   background-repeat:no-repeat;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .background.dark-mode {
   background-color: var(--background-dark);
   color: var(--text-dark);
+}
+
+/* For Firefox */
+/* Adjust the color and other styles as needed */
+/* Note: scrollbar-color is not supported in some versions of Firefox */
+/* Use scrollbar-face-color and scrollbar-track-color if needed */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--background-dark) var(--background-light); /* thumb color, track color */
+}
+
+/* For WebKit (Chrome, Safari) */
+/* Adjust the color and other styles as needed */
+/* Note: ::-webkit-scrollbar is supported in WebKit-based browsers */
+/* Use ::-webkit-scrollbar-thumb if needed */
+/* Use ::-webkit-scrollbar-track if needed */
+/* Use ::-webkit-scrollbar-track-piece if needed */
+/* Use ::-webkit-scrollbar-button if needed */
+/* Use ::-webkit-scrollbar-corner if needed */
+body::-webkit-scrollbar {
+  width: 12px; /* Adjust the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--background-dark); /* thumb color */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--background-light); /* track color */
 }

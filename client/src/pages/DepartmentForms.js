@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import { useEffect, useState, useContext } from "react"
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Box, Button } from "../styles";
-import moment from 'moment-timezone'
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import Form from "../components/Form";
+import { ThemeContext } from "../context/ThemeContext"
+import '../styles/FormLists.css'
 
 export default function DepartmentForms({employee}){
 
     const [departmentForms, setDepartmentForms] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
     const formsPerPage = 10
 
     useEffect(() => {
@@ -37,7 +35,7 @@ export default function DepartmentForms({employee}){
     }
 
     return (
-        <Wrapper>
+        <div className={`forms ${darkMode ? 'dark-mode' : ''}`}>
             <h1>{employee.department} Department Submissions</h1>
             {departmentForms.length > 0 ? (
                 displayedForms.map((form) => (
@@ -50,44 +48,22 @@ export default function DepartmentForms({employee}){
             ) : (
                 <>
                 <h2>403: Access Denied</h2>
-                <Button as={Link} to="/">
+                <button as={Link} to="/">
                     Go Back Home
-                </Button>
+                </button>
                 </>
             )}
-            <Pagination>
-                <Button onClick={handlePrevPage} disabled={currentPage === 1}>
+            <div id="pagination">
+                <button onClick={handlePrevPage} disabled={currentPage === 1}>
                 Previous Page
-                </Button>
+                </button>
                 <p>
                 Page {currentPage} of {totalPages}
                 </p>
-                <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages}>
                 Next Page
-                </Button>
-            </Pagination>
-        </Wrapper>
+                </button>
+            </div>
+        </div>
     )
 }
-
-const Wrapper = styled.section`
-    max-width: 800px;
-    margin: 40px auto;
-`;
-
-const Pagination = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-
-    button {
-        padding: 10px 20px;
-        border: 1px solid #ccc;
-        cursor: pointer;
-
-        &:disabled {
-        background-color: #f3f3f3;
-        cursor: not-allowed;
-        }
-    }
-`

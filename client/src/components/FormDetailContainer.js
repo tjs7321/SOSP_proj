@@ -15,7 +15,6 @@ export default function FormDetailContainer({handleSubmit, handleCategoryChange,
         if (!editing) {
             return (
                 <div>
-                    <h1>Department: {formInfo['department']}</h1>
                     <h1>{formInfo['type']}</h1>
                     <div>
                         <h4>{questions.question1}</h4>
@@ -31,14 +30,12 @@ export default function FormDetailContainer({handleSubmit, handleCategoryChange,
                         <h4>Comments:</h4>
                         <p>{formInfo['comments']}</p>
                     </div>
-                    <div>
-                        <button
-                        onClick={onClickDelete}
-                        >Delete</button>
-                        <button
-                        onClick={onClickEdit}
-                        >Edit</button>
-                    </div>
+                    <button
+                    onClick={onClickDelete}
+                    >Delete</button>
+                    <button
+                    onClick={onClickEdit}
+                    >Edit</button>
                 </div>
             )
         } else {

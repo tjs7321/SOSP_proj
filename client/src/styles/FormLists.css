@@ -1,15 +1,15 @@
 :root {
-    --background-light: #fbca04;
-    --background-dark: #0234fd;
+    --background-light: #f2f2f2;
+    --background-dark: #2b2b2b;
     --text-light: black;
-    --text-dark: white;
-    --button-bg-light: transparent;
-    --button-bg-dark: transparent;
-    --button-hover-bg-light: rgb(255, 153, 0);
+    --text-dark: rgb(160, 160, 160);
+    --button-bg-light: rgb(236 197 4);
+    --button-bg-dark: rgb(3, 0, 199);
+    --button-hover-bg-light: rgb(255, 187, 0);
     --button-hover-bg-dark: rgb(100, 100, 100);
 }
 
-.home {
+.forms {
     background-color: var(--background-light);
     color: var(--text-light);
     background-size: cover;
@@ -20,33 +20,87 @@
     flex-direction: column;
     justify-content: flex-smart;
     align-items: center;
-    gap: 1rem;
-    height: 100vh;
-    padding-top: 30px; /*subject to change*/
+    height: 80%;
+    padding-top: 10px; /*subject to change*/
 }
 
-.home.dark-mode {
+.forms.dark-mode {
     background-color: var(--background-dark);
     color: var(--text-dark);
 }
 
 .formCard {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 0.5rem 0.5rem;
-    gap: 1rem;
-    background-color: #E1C16E;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: --button-bg-light;
     border-radius: 10px;
-    width: 250px;
-    height: 400px;
+    border-style: outset;
+    width: 500px;
+    height: 30px;
     flex-shrink: 0;
-    filter: drop-shadow(1px, 2px, 0.2rem gray);
-    background-image: url("https://openclipart.org/image/800px/233557"), url("https://t4.ftcdn.net/jpg/02/18/47/97/360_F_218479727_gP89LrAKcNdJvIHtklm0XNElCcvgU831.jpg");
-    background-size: cover;
-    background-repeat:round;
-    margin: 30px;
-    margin-bottom: 10px;
+    border-color: #6e6e6e;
+    margin: 10px;
     cursor: pointer;
+}
+
+#pagination {
+    display: flex;
+    margin-top: 10px;
+    width: 30%;
+    align-items: center;
+    text-align-last: center;
+}
+
+.forms button{
+    display: block;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    font-family: "Roboto", cursive;
+    font-size: 1rem;
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-overflow: clip;
+    background-color: var(--button-bg-light);
+    &:disabled {
+        background-color: #f3f3f3;
+        cursor: not-allowed;
+        }
+}
+
+.forms.dark-mode button {
+    background-color: var(--button-bg-dark);
+    color: var(--text-dark);
+}
+
+.forms button:hover{
+    background-color: rgb(255, 153, 0);
+    &:disabled {
+        background-color: #f3f3f3;
+        cursor: not-allowed;
+        }
+}
+
+.forms.dark-mode button:hover {
+    background-color: var(--button-hover-bg-dark);
+}
+
+.forms p{
+    display: block;
+    height: 100%;
+    width: 100%;
+    font-family: "Roboto", cursive;
+    font-size: 1rem;
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.forms h1 {
+    display: block;
+    margin: auto;
+    font-size: 2em;
+    font-weight: bold;
 }
