@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import FormDetailContainer from "../components/FormDetailContainer";
 import { ThemeContext } from "../context/ThemeContext"
 import '../styles/FormDetail.css'
+import { max } from "moment-timezone";
 
 
 export default function FormDetailPage({employee, questionLists}) {
@@ -29,6 +30,7 @@ export default function FormDetailPage({employee, questionLists}) {
     const [formEmployeeID, setFormEmployeeID] = useState(1)
     const { darkMode, toggleDarkMode } = useContext(ThemeContext)
     const history = useHistory()
+    const maxCharacters = 500
 
     useEffect(()=> {
         fetch(`/forms/${id}`)
@@ -63,7 +65,7 @@ export default function FormDetailPage({employee, questionLists}) {
 
     // EVENT HANDLERS
     function onClickDelete() {
-        const result = window.confirm("Delete event?")
+        const result = window.confirm("Delete form?")
         if (result === true){
             fetch(`/forms/${id}`, {
                 method: "DELETE",
@@ -106,12 +108,13 @@ export default function FormDetailPage({employee, questionLists}) {
         setEditing(editing=>!editing)
     }
 
-    function handleTextChange(event) {
-        
-        setFormInfo({
+    function handleTextChange(e) {
+        if (e.target.value.length <= maxCharacters){
+            setFormInfo({
             ...formInfo,
-            [event.target.name]: event.target.value
-        })
+            [e.target.name]: e.target.value
+            })
+        }
     }
 
     function handleCategoryChange(e){
@@ -139,6 +142,7 @@ export default function FormDetailPage({employee, questionLists}) {
                 onClickEdit={onClickEdit}
                 formEmployeeID={formEmployeeID}
                 employee={employee}
+                maxCharacters={maxCharacters}
                 />
             </div>
         )

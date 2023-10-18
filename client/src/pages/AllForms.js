@@ -58,13 +58,13 @@ export default function AllForms(){
             )}
             <Pagination>
                 <button onClick={handlePrevPage} disabled={currentPage === 1}>
-                Previous Page
+                Previous
                 </button>
                 <p>
                 Page {currentPage} of {totalPages}
                 </p>
                 <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-                Next Page
+                Next
                 </button>
             </Pagination>
         </div>

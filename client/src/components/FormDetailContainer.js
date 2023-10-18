@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import FormEdit from './FormEdit'
 import moment from 'moment-timezone'
 
-export default function FormDetailContainer({handleSubmit, handleCategoryChange, handleTextChange,
+export default function FormDetailContainer({maxCharacters, handleSubmit, handleCategoryChange, handleTextChange,
     questions, formInfo, handleFormUpdate, editing, onClickDelete,onClickEdit, formEmployeeID, employee}) {
 
     function formatDate(isodate) {
@@ -17,21 +17,34 @@ export default function FormDetailContainer({handleSubmit, handleCategoryChange,
                 <div>
                     <h1>{formInfo['type']}</h1>
                     <div>
-                        <h4>{questions.question1}</h4>
-                        <p>{formInfo['answer1']}</p>
-                        <h4>{questions.question2}</h4>
-                        <p>{formInfo['answer2']}</p>
-                        <h4>{questions.question3}</h4>
-                        <p>{formInfo['answer3']}</p>
-                        <h4>{questions.question4}</h4>
-                        <p>{formInfo['answer4']}</p>
-                        <h4>{questions.question5}</h4>
-                        <p>{formInfo['answer5']}</p>
-                        <h4>Comments:</h4>
-                        <p>{formInfo['comments']}</p>
-                    </div>
+
+                            <h4>{questions.question1}</h4>
+                            <p>{formInfo['answer1']}</p>
+                        </div>
+                        <div>
+                            <h4>{questions.question2}</h4>
+                            <p>{formInfo['answer2']}</p>
+                        </div>
+                        <div>
+                            <h4>{questions.question3}</h4>
+                            <p>{formInfo['answer3']}</p>
+                        </div>
+                        <div>
+                            <h4>{questions.question4}</h4>
+                            <p>{formInfo['answer4']}</p>
+                        </div>
+                        <div>
+                            <h4>{questions.question5}</h4>
+                            <p>{formInfo['answer5']}</p>
+                        </div>
+                        <div>
+                            <h4>Comments:</h4>
+                            <p>{formInfo['comments']}</p>
+                        </div>
+
                     <button
                     onClick={onClickDelete}
+                    id='deleteButton'
                     >Delete</button>
                     <button
                     onClick={onClickEdit}
@@ -49,6 +62,7 @@ export default function FormDetailContainer({handleSubmit, handleCategoryChange,
                     formInfo={{...formInfo}}
                     onSubmit={handleFormUpdate}
                     onCancel={onClickEdit}
+                    maxCharacters={maxCharacters}
                 />
             )
         }

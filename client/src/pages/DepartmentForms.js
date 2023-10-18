@@ -55,13 +55,13 @@ export default function DepartmentForms({employee}){
             )}
             <div id="pagination">
                 <button onClick={handlePrevPage} disabled={currentPage === 1}>
-                Previous Page
+                Previous
                 </button>
                 <p>
                 Page {currentPage} of {totalPages}
                 </p>
                 <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-                Next Page
+                Next
                 </button>
             </div>
         </div>

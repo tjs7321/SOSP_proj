@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router"
 import '../styles/NewForm.css'
+import '../styles/Select.css'
 import { ThemeContext } from "../context/ThemeContext"
 
 function NewForm({ employee, questionLists}) {
@@ -82,25 +83,27 @@ function NewForm({ employee, questionLists}) {
     <div className={`newForm ${darkMode ? 'dark-mode' : ''}`}>
       <div  id="form">
         <h2>Submit a Safety Observation</h2>
-        <select
-        value={newForm.type}
-        placeholder="Select a Category"
-        name={'type'}
-        onChange={(e) => handleCategoryChange(e)}
-        >
-          <option value="Meetings">
-            Meetings
-          </option>
-          <option value="Radiation Protection">
-            Radiation Protection
-          </option>
-          <option value="Safety">
-            Safety
-          </option>
-          <option value="Environmental">
-            Environmental
-          </option>
-        </select>
+        {/* <div id="custom-select"> */}
+          <select
+          value={newForm.type}
+          placeholder="Select a Category"
+          name={'type'}
+          onChange={(e) => handleCategoryChange(e)}
+          >
+            <option value="Meetings">
+              Meetings
+            </option>
+            <option value="Radiation Protection">
+              Radiation Protection
+            </option>
+            <option value="Safety">
+              Safety
+            </option>
+            <option value="Environmental">
+              Environmental
+            </option>
+          </select>
+        {/* </div> */}
         <form
         onSubmit={handleSubmit}
         >

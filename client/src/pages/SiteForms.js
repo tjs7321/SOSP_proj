@@ -46,7 +46,7 @@ export default function SiteForms(){
 
     return (
         <div className={`forms ${darkMode ? 'dark-mode' : ''}`}>
-            <div>
+            {/* <div> */}
                 <select onChange={handleSortChange}>
                     <option>Maintenance</option>
                     <option>Operations</option>
@@ -56,7 +56,7 @@ export default function SiteForms(){
                     <option>Site Services</option>
                     <option>Engineering</option>
                 </select>
-            </div>
+            {/* </div> */}
             <h1>{filteredForms[0].department} Forms</h1>
             {filteredForms.length > 0 ? (
                 displayedForms.map((form) => (
@@ -76,13 +76,13 @@ export default function SiteForms(){
             )}
             <div id="pagination">
                 <button onClick={handlePrevPage} disabled={currentPage === 1}>
-                Previous Page
+                Previous
                 </button>
                     <p>
                     Page {currentPage} of {totalPages}
                     </p>
                 <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-                Next Page
+                Next
                 </button>
             </div>
         </div>

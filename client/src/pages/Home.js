@@ -37,7 +37,7 @@ export default function Home({employee}) {
           {safetyMessage}
         </h1>
       </div>
-      <h1>Your Recent Submissions</h1>
+      <h2>Your Recent Submissions:</h2>
       <div className="recentSubmissions">
         {forms.length > 0 ? (
           forms.map((form) => (

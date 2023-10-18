@@ -6,7 +6,7 @@
     --button-bg-light: rgb(236 197 4);
     --button-bg-dark: rgb(3, 0, 199);
     --button-hover-bg-light: rgb(255, 187, 0);
-    --button-hover-bg-dark: rgb(100, 100, 100);
+    --button-hover-bg-dark: rgb(3, 0, 199, 0.5);
 }
 
 .navbar {
@@ -71,7 +71,7 @@
 }
 
 .navbar.dark-mode button {
-    background-color: var(--button-bg-dark);
+    background-color: rgb(3, 0, 199, 0.5);
     color: var(--text-dark);
 }
 

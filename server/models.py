@@ -110,6 +110,12 @@ class Form(db.Model):
             raise ValueError('Form type must be either Meetings, Radiation Protection, Safety, or Environmental')
         return type
 
+    @validates('comments')
+    def validates_type(self, key, comments):
+        if len(comments) > 500:
+            raise ValueError('Form comments must be 500 characters or less')
+        return comments
+
 class Department(db.Model):
 
     __tablename__='departments'

@@ -1,10 +1,7 @@
-import React, {useState} from 'react'
 import "react-datetime/css/react-datetime.css"
 
 export default function FormEdit({questions, formInfo, handleSubmit,
-    onCancel, handleCategoryChange, handleTextChange}) {
-
-    const [errorMessage, setErrorMessage] = useState('')
+    onCancel, handleCategoryChange, handleTextChange, maxCharacters}) {
 
     function submitClick(e) {
         e.preventDefault()
@@ -14,7 +11,6 @@ export default function FormEdit({questions, formInfo, handleSubmit,
     return (
         <div>
             <h2>Edit Form</h2>
-            <div>
                 <form onSubmit={(e) => submitClick(e)}>
                 <select
                 value={formInfo.type}
@@ -130,6 +126,11 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         name="comments"
                         onChange={handleTextChange}
                         value={formInfo.comments}/>
+                        {formInfo.comments.length >= (maxCharacters - 25) ? (
+                            <h4 style={{ fontSize: '12px', color: formInfo.comments.length >= maxCharacters ? 'red' : 'black' }}>
+                            {maxCharacters - formInfo.comments.length} characters remaining (maximum {maxCharacters} characters).
+                            </h4>
+                        ) : null}
                     </div>
                     <button
                     type="submit"
@@ -138,7 +139,6 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                     onClick={onCancel}
                     >Cancel</button>
                 </form>
-            </div>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react"
 import Chart from "../components/Chart";
 import { ThemeContext } from "../context/ThemeContext"
 import '../styles/Charts.css'
+import '../styles/Select.css'
 
 export default function SiteChartPage({employee}){
 
@@ -32,22 +33,26 @@ export default function SiteChartPage({employee}){
     
     return(
         <div className={`charts ${darkMode ? 'dark-mode' : ''}`}>
-            <select onChange={handleSortChange}>
-                <option>Maintenance</option>
-                <option>Operations</option>
-                <option>Chemistry</option>
-                <option>Radiation Protection</option>
-                <option>Supply Chain</option>
-                <option>Site Services</option>
-                <option>Engineering</option>
-            </select>
-            <h1>{sortValue}</h1>
-            <div>
-                <Chart
-                forms={filteredForms}
-                employee={employee}
-                />
-            </div>
+            {/* <div> */}
+                {/* <div id="custom-select"> */}
+                <select onChange={handleSortChange}>
+                    <option>Maintenance</option>
+                    <option>Operations</option>
+                    <option>Chemistry</option>
+                    <option>Radiation Protection</option>
+                    <option>Supply Chain</option>
+                    <option>Site Services</option>
+                    <option>Engineering</option>
+                </select>
+                {/* </div> */}
+                <h1>{sortValue}</h1>
+                <div>
+                    <Chart
+                    forms={filteredForms}
+                    employee={employee}
+                    />
+                </div>
+            {/* </div> */}
         </div>
     )
 }

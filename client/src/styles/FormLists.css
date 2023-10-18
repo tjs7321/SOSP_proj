@@ -6,7 +6,7 @@
     --button-bg-light: rgb(236 197 4);
     --button-bg-dark: rgb(3, 0, 199);
     --button-hover-bg-light: rgb(255, 187, 0);
-    --button-hover-bg-dark: rgb(100, 100, 100);
+    --button-hover-bg-dark: rgb(3, 0, 199);
 }
 
 .forms {
@@ -71,7 +71,7 @@
 }
 
 .forms.dark-mode button {
-    background-color: var(--button-bg-dark);
+    background-color: rgb(3, 0, 199, 0.5);
     color: var(--text-dark);
 }
 
@@ -89,18 +89,27 @@
 
 .forms p{
     display: block;
-    height: 100%;
+    height: 50%;
     width: 100%;
     font-family: "Roboto", cursive;
     font-size: 1rem;
     border-radius: 6px;
-    padding: 8px 16px;
+    padding: 0px 16px;
     text-decoration: none;
+    min-width: fit-content;
 }
 
 .forms h1 {
     display: block;
-    margin: auto;
+    margin: 10px;
     font-size: 2em;
     font-weight: bold;
+}
+
+#deleteButton {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+#deleteButton:hover{
+    background-color: rgba(180, 0, 0, 0.603);
 }

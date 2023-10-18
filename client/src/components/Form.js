@@ -15,8 +15,8 @@ export default function Form({id, type, created_at}){
         to={`/forms/${id}`}
         >
             <div className="formCard">
-                <h2>{type} Form</h2>
-            <h3>{formatDate(created_at)}</h3>
+                <h3>{type} Form</h3>
+            <h4>{formatDate(created_at)}</h4>
             </div>
         </NavLink>
     )

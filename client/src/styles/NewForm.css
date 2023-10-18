@@ -21,19 +21,18 @@
     justify-content: flex-smart;
     align-items: center;
     gap: 1rem;
-    height: 100%;
+    height: 80%;
     padding-top: 30px;
 }
 
-#form {
-    display: contents;
+.newForm form {
+    display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: stretch;
-    gap: 0.5rem;
-    margin: 50px;
+    margin: 10px;
     flex-wrap: wrap;
-    border-style: outset;
+    border-style: none;
     border-color: #6e6e6e;
     width: 90%;
     height: 80%;
@@ -81,6 +80,9 @@
     border-style: outset;
     margin: 10px;
     border-color: #6e6e6e;
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
 }
 
 #questions {
@@ -105,8 +107,8 @@
 
 .newForm button{
     display: block;
-    height: 100%;
-    width: 100%;
+    height: 8%;
+    width: 30%;
     cursor: pointer;
     font-family: "Roboto", cursive;
     font-size: 1rem;
@@ -117,7 +119,7 @@
 }
 
 .newForm.dark-mode button {
-    background-color: var(--button-bg-dark);
+    background-color: rgb(3, 0, 199, 0.5);
     color: var(--text-dark);
 }
 
@@ -144,5 +146,5 @@
 
 .newForm h2, h3 {
     padding: 2px;
-    margin: 2px;
+    margin: 40px
 }
