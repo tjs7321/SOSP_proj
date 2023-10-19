@@ -154,7 +154,7 @@
 }
 
 .newForm.dark-mode button {
-    background-color: rgb(3, 0, 199, 0.5);
+    background-color: rgb(0 0 232);
     color: var(--text-dark);
 }
 
@@ -184,7 +184,7 @@
     margin: 40px
 }
 
-.newForm select{
+#form select{
     appearance: none;
     -webkit-appearance: none;
     width: -moz-fit-content;
@@ -201,7 +201,7 @@
     font-weight: bold;
 }
 
-.newForm.dark-mode select{
+#form-dark-mode select{
     background-color: #dddcdc00;
 }
 

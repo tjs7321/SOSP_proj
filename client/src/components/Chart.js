@@ -48,7 +48,7 @@ export default function Chart({ forms }) {
                 labels: {
                     // This more specific font property overrides the global property
                     font: {
-                        size: 14,
+                        size: 16,
                         family: 'monospace',
                         weight: 'bold',
                     },
@@ -60,7 +60,7 @@ export default function Chart({ forms }) {
                 text: 'Submissions by Month',
                 color: gridColor,
                 font: {
-                    size: 16,
+                    size: 18,
                     family: 'monospace',
                     weight: 'bold'
                 }
@@ -73,6 +73,11 @@ export default function Chart({ forms }) {
                 },
                 ticks: {
                     color: gridColor, // Change the color of the x-axis labels (months)
+                    font: {
+                        size: 14,
+                        family: 'monospace',
+                        weight: 'bold'
+                    },
                 }
             },
             y: {
@@ -91,6 +96,11 @@ export default function Chart({ forms }) {
                 },
                 ticks: {
                     color: gridColor, // Change the color of the x-axis labels (months)
+                    font: {
+                        size: 14,
+                        family: 'monospace',
+                        weight: 'bold'
+                    },
                 }
             },
         },
