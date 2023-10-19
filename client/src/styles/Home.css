@@ -10,12 +10,7 @@
 }
 
 .home {
-    background-color: var(--background-light);
     color: var(--text-light);
-    background-size: cover;
-    background-position: center;
-    background-repeat:no-repeat;
-    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     justify-content: flex-smart;
@@ -26,7 +21,6 @@
 }
 
 .home.dark-mode {
-    background-color: var(--background-dark);
     color: var(--text-dark);
     height: 80%;
 }

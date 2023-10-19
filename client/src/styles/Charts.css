@@ -10,7 +10,7 @@
 }
 
 .charts {
-    background-color: var(--background-light);
+    /* background-color: var(--background-light); */
     color: var(--text-light);
     background-size: cover;
     background-position: center;
@@ -26,7 +26,7 @@
 }
 
 .charts.dark-mode {
-    background-color: var(--background-dark);
+    /* background-color: var(--background-dark); */
     color: var(--text-dark);
 }
 
@@ -49,6 +49,7 @@
 }
 
 .charts div{
+    background-color: #cbcbcbc2;
     border-radius: 6px;
     padding: 10px;
     border-style: outset;
@@ -57,12 +58,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: #fdfdfd3b; */
-
 }
 
 .charts.dark-mode div{
-    /* background-color: #fdfdfd3b; */
+    background-color: #fdfdfd93;
 }
 
 .charts button{

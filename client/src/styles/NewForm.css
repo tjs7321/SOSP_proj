@@ -10,7 +10,7 @@
 }
 
 .newForm {
-    background-color: var(--background-light);
+    /* background-color: var(--background-light); */
     color: var(--text-light);
     background-size: cover;
     background-position: center;
@@ -51,7 +51,7 @@
 }
 
 .newForm.dark-mode {
-    background-color: var(--background-dark);
+    /* background-color: var(--background-dark); */
     color: var(--text-dark);
     height: 100%;
 }
@@ -75,6 +75,7 @@
 }
 
 .newForm div{
+    background-color: var(--background-light);
     border-radius: 6px;
     padding: 5px;
     border-style: outset;
@@ -83,6 +84,10 @@
     display: flex;
     flex-direction: column;
     align-items: inherit;
+}
+
+.newForm.newForm.dark-mode div {
+    background-color: var(--background-dark);
 }
 
 #questions {

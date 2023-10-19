@@ -10,7 +10,7 @@
 }
 
 .formDetail {
-    background-color: var(--background-light);
+    /* background-color: var(--background-light); */
     color: var(--text-light);
     background-size: cover;
     background-position: center;
@@ -38,9 +38,8 @@
 }
 
 .formDetail.dark-mode {
-    background-color: var(--background-dark);
+    /* background-color: var(--background-dark); */
     color: var(--text-dark);
-    height: 100%;
 }
 
 .recentSubmissions {
@@ -81,7 +80,7 @@
     width: 30%;
     font-size: medium;
     padding: 5px;
-    background-color: var(--background-light);
+    background-color: #dddcdc;
     color: var(--text-light);
     border-style: outset;
     border-color: #6e6e6e;
@@ -90,6 +89,7 @@
 }
 
 .formDetail div{
+    background-color: var(--background-light);
     border-radius: 6px;
     padding: 5px;
     border-style: outset;
@@ -99,6 +99,10 @@
     flex-direction: column;
     align-items: inherit;
     width: 80%;
+}
+
+.formDetail.dark-mode div {
+    background-color: var(--background-dark);
 }
 
 #questions {

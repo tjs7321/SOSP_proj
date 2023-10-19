@@ -10,6 +10,9 @@
 }
 
 .background {
+  background-image: url("../images/lightConcrete2.jpg");
+  background-size: cover;
+  background-position: center;
   background-color: var(--background-light);
   color: var(--text-light);
   background-size: cover;
@@ -22,6 +25,9 @@
 }
 
 .background.dark-mode {
+  background-image: url("../images/darkConcrete2.jpg");
+  background-size: cover;
+  background-position: center;
   background-color: var(--background-dark);
   color: var(--text-dark);
 }
@@ -42,8 +48,8 @@
   cursor: pointer;
 }
 
-.background.background.dark-mode select{
-  background-color: var(--background-dark);
+.background.dark-mode select{
+  background-color: #454545;
   color: var(--text-dark);
 }
 
@@ -55,7 +61,7 @@
   width: 96.67%;
   font-size: medium;
   padding: 5px;
-  background-color: var(--background-light);
+  background-color: #dddcdc;
   color: var(--text-light);
   border-style: outset;
   border-color: #6e6e6e;
@@ -63,8 +69,8 @@
   cursor: pointer;
 }
 
-.background.background.dark-mode textarea{
-  background-color: var(--background-dark);
+.background.dark-mode textarea{
+  background-color: #454545;
   color: var(--text-dark);
 }
 
