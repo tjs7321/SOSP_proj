@@ -1,35 +1,12 @@
-import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
+import "../styles/Login.css"
 
-function Login({ onLogin }) {
+export default function Login({ onLogin }) {
 
     return (
-        <Wrapper>
-        <Logo>Safety Submission Portal</Logo>
-            <>
+        <div className="login-container">
+            <h1>Safety Submission Portal</h1>
             <LoginForm onLogin={onLogin} />
-            </>
-        </Wrapper>
+        </div>
     );
 }
-
-    const Logo = styled.h1`
-    font-family: "Roboto", cursive;
-    font-size: 3rem;
-    color: black;
-    margin: 8px 0 16px;
-    `;
-
-    const Wrapper = styled.section`
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 16px;
-    `;
-
-    const Divider = styled.hr`
-    border: none;
-    border-bottom: 1px solid #ccc;
-    margin: 16px 0;
-    `;
-
-    export default Login;

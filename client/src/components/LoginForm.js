@@ -1,9 +1,12 @@
 import React, { useState } from "react"
+import styled from "styled-components";
+import "../styles/Login.css"
+import Error from "./Error";
 
-function LoginForm({ onLogin }) {
+export default function LoginForm({ onLogin }) {
   const [employee, setEmployee] = useState("")
   const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
   function handleSubmit(e) {
@@ -20,45 +23,49 @@ function LoginForm({ onLogin }) {
       if (r.ok) {
         r.json().then((user) => onLogin(user))
       } else {
-        r.json().then((err) => setErrors(err.errors))
+        setErrors("Employee ID or Password is incorrect")
       }
     });
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <h1 htmlFor="employee">Employee ID</h1>
+      <FormField>
+      <div className="label" htmlFor="employee">Employee ID</div>
         <input
+          required
           type="text"
           id="employee"
           autoComplete="off"
           value={employee}
           onChange={(e) => setEmployee(e.target.value)}
         />
-      </div>
-      <div>
-        <h1 htmlFor="password">Password</h1>
+      </FormField>
+      <FormField>
+        <div className="label" htmlFor="password">Password</div>
         <input
+          required
           type="password"
           id="password"
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-      </div>
-      <div>
+      </FormField>
         <button variant="fill" color="primary" type="submit">
           {isLoading ? "Loading..." : "Login"}
         </button>
-      </div>
-      {/* <div>
-        {errors.map((err) => (
-          <Error key={err}>{err}</Error>
-        ))}
-      </div> */}
+        {errors ? (
+        <div className="errorWrapper">
+          <span className="errorAlert">!</span>
+          <p className="errorMessage">{errors}</p>
+        </div>) : null}
     </form>
   )
 }
 
-export default LoginForm 
+const FormField = styled.div`
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+`;

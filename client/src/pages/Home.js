@@ -33,9 +33,11 @@ export default function Home({employee}) {
     <div className={`home ${darkMode ? 'dark-mode' : ''}`}>
       <div id="subHeader">
         <h1>Welcome, {employee.name}!</h1>
-        <h1>
-          {safetyMessage}
-        </h1>
+        <div id="marquee-container">
+          <div id="marquee-content">
+            {safetyMessage}
+          </div>
+        </div>
       </div>
       <h2>Your Recent Submissions:</h2>
       <div className="recentSubmissions">

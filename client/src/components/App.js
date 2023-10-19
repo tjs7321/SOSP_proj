@@ -12,6 +12,7 @@ import SiteForms from "../pages/SiteForms"
 import DepartmentChartPage from "../pages/DepartmentChartPage"
 import SiteChartPage from "../pages/SiteChartPage"
 import { ThemeContext } from "../context/ThemeContext"
+import "../styles/Login.css"
 
 function App() {
   const [employee, setEmployee] = useState(null)
@@ -39,8 +40,7 @@ function App() {
 
   if (!employee) return (
       <div
-      className={`background ${darkMode ? 'dark-mode' : ''}`}>
-        <NavBar></NavBar>
+      className="loginForm">
         <Login onLogin={setEmployee} />
       </div>
   )

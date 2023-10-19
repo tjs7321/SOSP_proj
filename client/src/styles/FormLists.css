@@ -1,5 +1,5 @@
 :root {
-    --background-light: #f2f2f2;
+    --background-light: #cbcbcb;
     --background-dark: #2b2b2b;
     --text-light: black;
     --text-dark: rgb(160, 160, 160);
@@ -73,6 +73,10 @@
 .forms.dark-mode button {
     background-color: rgb(3, 0, 199, 0.5);
     color: var(--text-dark);
+    &:disabled {
+        background-color: #8f8f8f2d;
+        cursor: not-allowed;
+        }
 }
 
 .forms button:hover{
@@ -85,6 +89,10 @@
 
 .forms.dark-mode button:hover {
     background-color: var(--button-hover-bg-dark);
+    &:disabled {
+        background-color: #8f8f8f2d;
+        cursor: not-allowed;
+        }
 }
 
 .forms p{

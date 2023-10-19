@@ -12,25 +12,25 @@ export default function FormEdit({questions, formInfo, handleSubmit,
         <div>
             <h2>Edit Form</h2>
                 <form onSubmit={(e) => submitClick(e)}>
-                <select
-                value={formInfo.type}
-                placeholder="Select a Category"
-                name={'type'}
-                onChange={(e) => handleCategoryChange(e)}
-                >
-                    <option value="Meetings">
-                        Meetings
-                    </option>
-                    <option value="Radiation Protection">
-                        Radiation Protection
-                    </option>
-                    <option value="Safety">
-                        Safety
-                    </option>
-                    <option value="Environmental">
-                        Environmental
-                    </option>
-                </select>
+                    <select
+                    value={formInfo.type}
+                    placeholder="Select a Category"
+                    name={'type'}
+                    onChange={(e) => handleCategoryChange(e)}
+                    >
+                        <option value="Meetings">
+                            Meetings
+                        </option>
+                        <option value="Radiation Protection">
+                            Radiation Protection
+                        </option>
+                        <option value="Safety">
+                            Safety
+                        </option>
+                        <option value="Environmental">
+                            Environmental
+                        </option>
+                    </select>
                     <div>
                         <h4>{questions.question1}</h4>
                         <select

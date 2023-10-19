@@ -1,5 +1,5 @@
 :root {
-  --background-light: #b8b8b8;
+  --background-light: #cbcbcb;
   --background-dark: #2b2b2b;
   --text-light: black;
   --text-dark: rgb(160, 160, 160);
@@ -17,9 +17,53 @@
   background-repeat:no-repeat;
   width: 100%;
   height: 100vh;
+  /* font-family: monospace;
+  font-weight: bold; */
 }
 
 .background.dark-mode {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+.background select {
+  appearance: none;
+  /* safari */
+  -webkit-appearance: none;
+  /* other styles for aesthetics */
+  width: fit-content;
+  font-size: medium;
+  padding: 5px;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  border-style: outset;
+  border-color: #6e6e6e;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.background.background.dark-mode select{
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+.background textarea{
+  appearance: none;
+  /* safari */
+  -webkit-appearance: none;
+  /* other styles for aesthetics */
+  width: 96.67%;
+  font-size: medium;
+  padding: 5px;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  border-style: outset;
+  border-color: #6e6e6e;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.background.background.dark-mode textarea{
   background-color: var(--background-dark);
   color: var(--text-dark);
 }
