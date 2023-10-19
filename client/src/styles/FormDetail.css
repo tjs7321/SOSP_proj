@@ -60,6 +60,27 @@
     border: none;
 }
 
+.formDetail select{
+    appearance: none;
+    -webkit-appearance: none;
+    width: -moz-fit-content;
+    width: 30%;
+    font-size: medium;
+    padding: 5px;
+    background-color: #dddcdc00;
+    color: var(--text-light);
+    border-style: outset;
+    border-color: #6e6e6e;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.formDetail.dark-mode select{
+    background-color: #dddcdc00;
+}
+
 .formDetail form {
     display: flex;
     flex-direction: row;
@@ -80,7 +101,27 @@
     width: 30%;
     font-size: medium;
     padding: 5px;
-    background-color: #dddcdc;
+    background-color: #dddcdc00;
+    color: var(--text-light);
+    border-style: outset;
+    border-color: #6e6e6e;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.formDetail.dark-mode form select{
+    background-color: #dddcdc00;
+}
+
+.formDetail form textarea{
+    appearance: none;
+    -webkit-appearance: none;
+    width: 96.67%;
+    font-size: medium;
+    padding: 5px;
+    background-color: #dddcdc00;
     color: var(--text-light);
     border-style: outset;
     border-color: #6e6e6e;
@@ -88,8 +129,12 @@
     cursor: pointer;
 }
 
+.formDetail.dark-mode form textarea{
+    background-color: #dddcdc00;
+}
+
 .formDetail div{
-    background-color: var(--background-light);
+    background-color: rgba(240, 248, 255, 0);
     border-radius: 6px;
     padding: 5px;
     border-style: outset;
@@ -102,7 +147,41 @@
 }
 
 .formDetail.dark-mode div {
+    background-color: rgba(240, 248, 255, 0);
+}
+
+#form-detail {
+    background-color: var(--background-light);
+    border-radius: 6px;
+    padding: 5px;
+    border-style: outset;
+    margin: 10px;
+    border-color: #6e6e6e;
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    background-image: url('../images/lightPaper.jpg');
+    background-repeat: no-repeat;
+    width: 50%;
+    background-position: initial;
+    background-size: cover;
+}
+
+#form-detail-dark-mode {
     background-color: var(--background-dark);
+    border-radius: 6px;
+    padding: 5px;
+    border-style: outset;
+    margin: 10px;
+    border-color: #6e6e6e;
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    background-image: url('../images/darkPaper.jpg');
+    background-repeat: no-repeat;
+    width: 50%;
+    background-position: initial;
+    background-size: cover;
 }
 
 #questions {
@@ -130,7 +209,8 @@
     height: 8%;
     width: 20%;
     cursor: pointer;
-    font-family: "Roboto", cursive;
+    font-family: monospace;
+    font-weight: bold;
     font-size: 1rem;
     border-radius: 6px;
     padding: 8px 16px;
@@ -140,7 +220,7 @@
 }
 
 .formDetail.dark-mode button {
-    background-color: rgb(3, 0, 199, 0.5);
+    background-color: rgb(0 0 232);
     color: var(--text-dark);
 }
 

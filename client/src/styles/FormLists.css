@@ -21,7 +21,7 @@
     justify-content: flex-smart;
     align-items: center;
     height: 80%;
-    padding-top: 10px; /*subject to change*/
+    padding-top: 30px; /*subject to change*/
 }
 
 .forms.dark-mode {
@@ -43,10 +43,12 @@
     border-color: #6e6e6e;
     margin: 10px;
     cursor: pointer;
+    background-image: url('../images/lightSteelSheet.jpg');
 }
 
 .formCard.dark-mode{
     background-color: #2b2b2b;
+    background-image: url('../images/darkSteelSheet.jpg');
 }
 
 #pagination {
@@ -62,20 +64,21 @@
     height: 100%;
     width: 100%;
     cursor: pointer;
-    font-family: "Roboto", cursive;
+    font-family: monospace;
+    font-weight: bold;
     font-size: 1rem;
     border-radius: 6px;
     padding: 8px 16px;
     text-overflow: clip;
     background-color: var(--button-bg-light);
     &:disabled {
-        background-color: #f3f3f3;
+        background-color: #f3f3f387;
         cursor: not-allowed;
         }
 }
 
 .forms.dark-mode button {
-    background-color: rgb(3, 0, 199, 0.5);
+    background-color: rgb(0 0 232);
     color: var(--text-dark);
     &:disabled {
         background-color: #8f8f8f2d;
@@ -112,16 +115,63 @@
 }
 
 .forms h1 {
-    display: block;
-    margin: 10px;
-    font-size: 2em;
+    border-style: outset;
+    border-radius: 6px;
+    padding: 8px;
+    border-color: #6e6e6e;
+    margin: 2px;
+    background-color: #dddcdc;
+    background-image: url('../images/lightSteelSheet.jpg');
+    font-family: monospace;
+    font-size: 24px;
     font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.forms.dark-mode h1 {
+    background-image: url('../images/darkSteelSheet.jpg');
 }
 
 #deleteButton {
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: rgb(255, 0, 0);
+    font-family: monospace;
+    font-weight: bold;
 }
 
 #deleteButton:hover{
-    background-color: rgba(180, 0, 0, 0.603);
+    background-color: rgba(180, 0, 0);
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#deleteButton-dark-mode {
+    background-color: rgb(165 0 0);
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#deleteButton-dark-mode:hover{
+    background-color: rgb(226, 1, 1);
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.forms select {
+    border-style: outset;
+    border-radius: 6px;
+    padding: 8px;
+    border-color: #6e6e6e;
+    margin: 2px;
+    background-color: #dddcdc;
+    background-image: url('../images/lightSteelSheet.jpg');
+    font-family: monospace;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.forms.dark-mode select {
+    background-image: url('../images/darkSteelSheet.jpg');
 }

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale,
     BarElement, Title, Tooltip, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
+import { ThemeContext } from "../context/ThemeContext"
 
 
 ChartJS.register(CategoryScale, LinearScale, BarElement,
@@ -9,7 +10,12 @@ ChartJS.register(CategoryScale, LinearScale, BarElement,
 
 export default function Chart({ forms }) {
 
-    // console.log(forms)
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
+
+    let gridColor = 'black'
+    if (darkMode){
+        gridColor = 'rgb(160, 160, 160)'
+    }
 
     function getMonthName(monthNumber) {
         const monthNames = [
@@ -37,27 +43,48 @@ export default function Chart({ forms }) {
     const options = {
         responsive: true,
         plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: true,
-            text: 'Submissions by Month',
-        },
+            legend: {
+                position: 'top',
+                labels: {
+                    // This more specific font property overrides the global property
+                    font: {
+                        size: 14,
+                        family: 'monospace',
+                        weight: 'bold'
+                    }
+                }
+            },
+            title: {
+                display: true,
+                text: 'Submissions by Month',
+                font: {
+                    size: 16,
+                    family: 'monospace',
+                    weight: 'bold'
+                }
+            },
         },
         scales: {
-        y: {
-            beginAtZero: true,
-            suggestedMax: Math.ceil((Math.max(...labels.map(label => {
-            const maxFormCount = Math.max(
-                numFormsByMonthAndType(label, 'Meetings'),
-                numFormsByMonthAndType(label, 'Radiation Protection'),
-                numFormsByMonthAndType(label, 'Safety'),
-                numFormsByMonthAndType(label, 'Environmental')
-            )
-            return maxFormCount
-            }))) / 10) * 10,
-        },
+            x: {
+                grid: {
+                    color: gridColor
+                }
+            },
+            y: {
+                beginAtZero: true,
+                suggestedMax: Math.ceil((Math.max(...labels.map(label => {
+                const maxFormCount = Math.max(
+                    numFormsByMonthAndType(label, 'Meetings'),
+                    numFormsByMonthAndType(label, 'Radiation Protection'),
+                    numFormsByMonthAndType(label, 'Safety'),
+                    numFormsByMonthAndType(label, 'Environmental')
+                )
+                return maxFormCount
+                }))) / 10) * 10,
+                grid: {
+                    color: gridColor
+                }
+            },
         },
     }
 
@@ -74,6 +101,8 @@ export default function Chart({ forms }) {
             chartInstance.update()
         }
     }, [labels])
+
+    console.log(labels)
 
     const data = {
         labels,

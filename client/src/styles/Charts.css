@@ -49,19 +49,22 @@
 }
 
 .charts div{
+    background-image: url('../images/lightSteelSheet.jpg');
     background-color: #cbcbcbc2;
     border-radius: 6px;
     padding: 10px;
     border-style: outset;
-    height: 100%;
-    width: 80%;
+    height: 80%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-color: #6e6e6e
 }
 
 .charts.dark-mode div{
     background-color: #fdfdfd93;
+    background-image: url('../images/darkSteelSheet.jpg');
 }
 
 .charts button{
@@ -95,12 +98,42 @@
     color: inherit;
 }
 
-.charts h1 {
-    display: block;
-    margin: auto;
-    font-size: 2em;
+.charts select {
+    border-style: outset;
+    border-radius: 6px;
+    padding: 8px;
+    border-color: #6e6e6e;
+    margin: 2px;
+    background-color: #dddcdc;
+    background-image: url('../images/lightSteelSheet.jpg');
+    font-family: monospace;
+    font-size: 24px;
     font-weight: bold;
-    margin: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.charts.dark-mode select {
+    background-image: url('../images/darkSteelSheet.jpg');
+}
+
+.charts h1 {
+    border-style: outset;
+    border-radius: 6px;
+    padding: 8px;
+    border-color: #6e6e6e;
+    margin: 2px;
+    background-color: #dddcdc;
+    background-image: url('../images/lightSteelSheet.jpg');
+    font-family: monospace;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.charts.dark-mode h1 {
+    background-image: url('../images/darkSteelSheet.jpg');
 }
 
 .charts h2, h3 {

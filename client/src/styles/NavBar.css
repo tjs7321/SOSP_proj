@@ -13,7 +13,7 @@
     position: sticky;
     top: 0;
     width: 100%;
-    background-image: url("../images/caution_border.png");
+    background-image: url("../images/caution_border.png"), url('../images/lightSteel.jpg');
     background-size: auto;
     background-repeat:round;
     background-color: #dddcdc;
@@ -36,7 +36,7 @@
 }
 
 .navbar.dark-mode {
-    background-image: url("../images/caution_border_darkMode.png");
+    background-image: url("../images/caution_border_darkMode.png"), url('../images/darkSteel.jpg');
     background-color: #1a1a1a;
     color: var(--text-dark);
 }
@@ -79,7 +79,7 @@
 }
 
 .navbar.dark-mode button {
-    background-color: rgb(3, 0, 199, 0.5);
+    background-color: rgb(0 0 232);
     color: var(--text-dark);
 }
 

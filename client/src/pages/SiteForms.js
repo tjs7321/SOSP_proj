@@ -46,7 +46,6 @@ export default function SiteForms(){
 
     return (
         <div className={`forms ${darkMode ? 'dark-mode' : ''}`}>
-            {/* <div> */}
                 <select onChange={handleSortChange}>
                     <option>Maintenance</option>
                     <option>Operations</option>
@@ -56,8 +55,6 @@ export default function SiteForms(){
                     <option>Site Services</option>
                     <option>Engineering</option>
                 </select>
-            {/* </div> */}
-            <h1>{filteredForms[0].department} Forms</h1>
             {filteredForms.length > 0 ? (
                 displayedForms.map((form) => (
                 <Form

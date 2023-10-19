@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import FormEdit from './FormEdit'
 import moment from 'moment-timezone'
+import { ThemeContext } from "../context/ThemeContext"
 
 export default function FormDetailContainer({maxCharacters, handleSubmit, handleCategoryChange, handleTextChange,
     questions, formInfo, handleFormUpdate, editing, onClickDelete,onClickEdit, formEmployeeID, employee}) {
@@ -9,42 +10,44 @@ export default function FormDetailContainer({maxCharacters, handleSubmit, handle
         return moment(isodate).format('MM-DD-YYYY h:mm')
     }
 
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
+
     if (questions === undefined){
         return <h1>Loading...</h1>
     } else{if (formEmployeeID === employee.id){
         if (!editing) {
             return (
-                <div>
+                <div id={darkMode ? 'form-detail-dark-mode' : 'form-detail'}>
                     <h1>{formInfo['type']}</h1>
                     <div>
 
-                            <h4>{questions.question1}</h4>
+                            <h3>{questions.question1}</h3>
                             <p>{formInfo['answer1']}</p>
                         </div>
                         <div>
-                            <h4>{questions.question2}</h4>
+                            <h3>{questions.question2}</h3>
                             <p>{formInfo['answer2']}</p>
                         </div>
                         <div>
-                            <h4>{questions.question3}</h4>
+                            <h3>{questions.question3}</h3>
                             <p>{formInfo['answer3']}</p>
                         </div>
                         <div>
-                            <h4>{questions.question4}</h4>
+                            <h3>{questions.question4}</h3>
                             <p>{formInfo['answer4']}</p>
                         </div>
                         <div>
-                            <h4>{questions.question5}</h4>
+                            <h3>{questions.question5}</h3>
                             <p>{formInfo['answer5']}</p>
                         </div>
                         <div>
-                            <h4>Comments:</h4>
+                            <h3>Comments:</h3>
                             <p>{formInfo['comments']}</p>
                         </div>
 
                     <button
                     onClick={onClickDelete}
-                    id='deleteButton'
+                    id={darkMode ? 'deleteButton-dark-mode' : 'deleteButton'}
                     >Delete</button>
                     <button
                     onClick={onClickEdit}
@@ -68,26 +71,24 @@ export default function FormDetailContainer({maxCharacters, handleSubmit, handle
         }
     } else {
         return (
-            <div>
+            <div id={darkMode ? 'form-detail-dark-mode' : 'form-detail'}>
                 <h1>Department: {formInfo['department']}</h1>
                 <h1>{formInfo['type']}</h1>
                 <div>
-                    <h4>{questions.question1}</h4>
+                    <h3>{questions.question1}</h3>
                     <p>{formInfo['answer1']}</p>
-                    <h4>{questions.question2}</h4>
+                    <h3>{questions.question2}</h3>
                     <p>{formInfo['answer2']}</p>
-                    <h4>{questions.question3}</h4>
+                    <h3>{questions.question3}</h3>
                     <p>{formInfo['answer3']}</p>
-                    <h4>{questions.question4}</h4>
+                    <h3>{questions.question4}</h3>
                     <p>{formInfo['answer4']}</p>
-                    <h4>{questions.question5}</h4>
+                    <h3>{questions.question5}</h3>
                     <p>{formInfo['answer5']}</p>
-                    <h4>Comments:</h4>
+                    <h3>Comments:</h3>
                     <p>{formInfo['comments']}</p>
                 </div>
             </div>
         )
     }}
-
-    
 }

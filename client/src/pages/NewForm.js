@@ -81,7 +81,7 @@ function NewForm({ employee, questionLists}) {
   
   return (
     <div className={`newForm ${darkMode ? 'dark-mode' : ''}`}>
-      <div  id="form">
+      <div  id={darkMode ? 'form-dark-mode' : 'form'}>
         <h2>Submit a Safety Observation</h2>
         {/* <div id="custom-select"> */}
           <select

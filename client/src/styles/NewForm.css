@@ -75,7 +75,7 @@
 }
 
 .newForm div{
-    background-color: var(--background-light);
+    background-color: rgba(240, 248, 255, 0);
     border-radius: 6px;
     padding: 5px;
     border-style: outset;
@@ -86,9 +86,38 @@
     align-items: inherit;
 }
 
-.newForm.newForm.dark-mode div {
-    background-color: var(--background-dark);
+.newForm.dark-mode div {
+    background-color: rgba(240, 248, 255, 0);
 }
+
+#form {
+    background-color: var(--background-light);
+    border-radius: 6px;
+    padding: 5px;
+    border-style: outset;
+    margin: 10px;
+    border-color: #6e6e6e;
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    background-image: url('../images/lightPaper.jpg');
+    background-repeat: round;
+}
+
+#form-dark-mode {
+    background-color: var(--background-dark);
+    border-radius: 6px;
+    padding: 5px;
+    border-style: outset;
+    margin: 10px;
+    border-color: #6e6e6e;
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    background-image: url('../images/darkPaper.jpg');
+    background-repeat: round;
+}
+
 
 #questions {
     padding: 5px;
@@ -115,7 +144,8 @@
     height: 8%;
     width: 30%;
     cursor: pointer;
-    font-family: "Roboto", cursive;
+    font-family: monospace;
+    font-weight: bold;
     font-size: 1rem;
     border-radius: 6px;
     padding: 8px 16px;
@@ -152,4 +182,64 @@
 .newForm h2, h3 {
     padding: 2px;
     margin: 40px
+}
+
+.newForm select{
+    appearance: none;
+    -webkit-appearance: none;
+    width: -moz-fit-content;
+    width: 30%;
+    font-size: medium;
+    padding: 5px;
+    background-color: #dddcdc00;
+    color: var(--text-light);
+    border-style: outset;
+    border-color: #6e6e6e;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.newForm.dark-mode select{
+    background-color: #dddcdc00;
+}
+
+.newForm form select{
+    appearance: none;
+    -webkit-appearance: none;
+    width: -moz-fit-content;
+    width: 30%;
+    font-size: medium;
+    padding: 5px;
+    background-color: #dddcdc00;
+    color: var(--text-light);
+    border-style: outset;
+    border-color: #6e6e6e;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.newForm.dark-mode form select{
+    background-color: #dddcdc00;
+}
+
+.newForm form textarea{
+    appearance: none;
+    -webkit-appearance: none;
+    width: 96.67%;
+    font-size: medium;
+    padding: 5px;
+    background-color: #dddcdc00;
+    color: var(--text-light);
+    border-style: outset;
+    border-color: #6e6e6e;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.newForm.dark-mode form textarea{
+    background-color: #dddcdc00;
 }

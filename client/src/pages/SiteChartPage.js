@@ -45,7 +45,6 @@ export default function SiteChartPage({employee}){
                     <option>Engineering</option>
                 </select>
                 {/* </div> */}
-                <h1>{sortValue}</h1>
                 <div>
                     <Chart
                     forms={filteredForms}

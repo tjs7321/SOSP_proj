@@ -1,4 +1,6 @@
 import "react-datetime/css/react-datetime.css"
+import React, {useState, useContext} from 'react'
+import { ThemeContext } from "../context/ThemeContext"
 
 export default function FormEdit({questions, formInfo, handleSubmit,
     onCancel, handleCategoryChange, handleTextChange, maxCharacters}) {
@@ -8,9 +10,10 @@ export default function FormEdit({questions, formInfo, handleSubmit,
         handleSubmit()
     }
 
+    const { darkMode, toggleDarkMode } = useContext(ThemeContext)
+
     return (
-        <div>
-            <h2>Edit Form</h2>
+        <div id={darkMode ? 'form-detail-dark-mode' : 'form-detail'}>
                 <form onSubmit={(e) => submitClick(e)}>
                     <select
                     value={formInfo.type}
@@ -32,7 +35,7 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         </option>
                     </select>
                     <div>
-                        <h4>{questions.question1}</h4>
+                        <h3>{questions.question1}</h3>
                         <select
                         required
                         type="text"
@@ -49,7 +52,7 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         </select>
                     </div>
                     <div>
-                        <h4>{questions.question2}</h4>
+                        <h3>{questions.question2}</h3>
                         <select
                         required
                         type="text"
@@ -66,7 +69,7 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         </select>
                     </div>
                     <div>
-                        <h4>{questions.question3}</h4>
+                        <h3>{questions.question3}</h3>
                         <select
                         required
                         type="text"
@@ -83,7 +86,7 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         </select>
                     </div>
                     <div>
-                        <h4>{questions.question4}</h4>
+                        <h3>{questions.question4}</h3>
                         <select
                         required
                         type="text"
@@ -100,7 +103,7 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         </select>
                     </div>
                     <div>
-                        <h4>{questions.question5}</h4>
+                        <h3>{questions.question5}</h3>
                         <select
                         required
                         type="text"
@@ -117,7 +120,7 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                         </select>
                     </div>
                     <div>
-                        <h4>Description</h4>
+                        <h3>Comments:</h3>
                         <textarea
                         rows='4'
                         required
@@ -136,6 +139,7 @@ export default function FormEdit({questions, formInfo, handleSubmit,
                     type="submit"
                     >Submit</button>
                     <button
+                    id={darkMode ? 'deleteButton-dark-mode' : 'deleteButton'}
                     onClick={onCancel}
                     >Cancel</button>
                 </form>
