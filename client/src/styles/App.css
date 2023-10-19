@@ -34,7 +34,7 @@
   width: fit-content;
   font-size: medium;
   padding: 5px;
-  background-color: var(--background-light);
+  background-color: #dddcdc;
   color: var(--text-light);
   border-style: outset;
   border-color: #6e6e6e;

@@ -34,7 +34,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 5px;
-    background-color: --button-bg-light;
+    background-color: #dddcdc;
     border-radius: 10px;
     border-style: outset;
     width: 500px;

@@ -31,36 +31,40 @@ export default function NavBar({ employee, setEmployee }) {
       <nav
       className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
-        <DarkModeToggle/>
-        <NavLink to="/department_forms" className="navLink">
-            <button
-            as={Link} to="/department_forms"
-            >
-                Department Forms
-            </button>
-        </NavLink>
-        <NavLink to="/department_chart_page" className="navLink">
-            <button
-            as={Link} to="/department_chart_page"
-            >
-                Department Charts
-            </button>
-        </NavLink>
+        <div>
+          <DarkModeToggle/>
+          <NavLink to="/department_forms" className="navLink">
+              <button
+              as={Link} to="/department_forms"
+              >
+                  Department Forms
+              </button>
+          </NavLink>
+          <NavLink to="/department_chart_page" className="navLink">
+              <button
+              as={Link} to="/department_chart_page"
+              >
+                  Department Charts
+              </button>
+          </NavLink>
+        </div>
         <NavLink className="navLink"
           to="/">
           <h1>Safety Submission Portal
           </h1>
         </NavLink>
-        <NavLink to="/newForm" className="navLink">
+        <div>
+          <NavLink to="/newForm" className="navLink">
+            <button
+            >
+                  New Submission
+            </button>
+          </NavLink>
           <button
-          >
-                New Submission
+          onClick={handleLogoutClick}>
+            Logout
           </button>
-        </NavLink>
-        <button
-        onClick={handleLogoutClick}>
-          Logout
-        </button>
+        </div>
       </nav>
     )}
 
@@ -93,36 +97,40 @@ export default function NavBar({ employee, setEmployee }) {
       <nav
       className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
-        <DarkModeToggle/>
-        <NavLink to="/site_forms" className="navLink">
-            <button
-            as={Link} to="/site_forms"
-            >
-                Site Forms
-            </button>
-          </NavLink>
-          <NavLink to="/site_chart_page" className="navLink">
-            <button
-            as={Link} to="/site_chart_page"
-            >
-                Site Charts
-            </button>
-          </NavLink>
+        <div>
+          <DarkModeToggle/>
+          <NavLink to="/site_forms" className="navLink">
+              <button
+              as={Link} to="/site_forms"
+              >
+                  Site Forms
+              </button>
+            </NavLink>
+            <NavLink to="/site_chart_page" className="navLink">
+              <button
+              as={Link} to="/site_chart_page"
+              >
+                  Site Charts
+              </button>
+            </NavLink>
+        </div>
         <NavLink className="navLink"
           to="/">
           <h1>Safety Submission Portal
           </h1>
         </NavLink>
-        <NavLink to="/newForm" className="navLink">
+        <div>
+          <NavLink to="/newForm" className="navLink">
+            <button
+            >
+                  New Submission
+            </button>
+          </NavLink>
           <button
-          >
-                New Submission
+          onClick={handleLogoutClick}>
+            Logout
           </button>
-        </NavLink>
-        <button
-        onClick={handleLogoutClick}>
-          Logout
-        </button>
+        </div>
       </nav>
     )}
 }
