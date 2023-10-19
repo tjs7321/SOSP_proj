@@ -50,13 +50,15 @@ export default function Chart({ forms }) {
                     font: {
                         size: 14,
                         family: 'monospace',
-                        weight: 'bold'
-                    }
+                        weight: 'bold',
+                    },
+                    color: gridColor,
                 }
             },
             title: {
                 display: true,
                 text: 'Submissions by Month',
+                color: gridColor,
                 font: {
                     size: 16,
                     family: 'monospace',
@@ -68,6 +70,9 @@ export default function Chart({ forms }) {
             x: {
                 grid: {
                     color: gridColor
+                },
+                ticks: {
+                    color: gridColor, // Change the color of the x-axis labels (months)
                 }
             },
             y: {
@@ -83,6 +88,9 @@ export default function Chart({ forms }) {
                 }))) / 10) * 10,
                 grid: {
                     color: gridColor
+                },
+                ticks: {
+                    color: gridColor, // Change the color of the x-axis labels (months)
                 }
             },
         },
