@@ -3,11 +3,11 @@ import { ThemeContext } from "../context/ThemeContext"
 
 function DarkModeToggle({employee}) {
   
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext)
+  const { darkMode, setDarkMode } = useContext(ThemeContext)
 
   function handleClick(){
     const body = JSON.stringify({
-      dark_mode: darkMode
+      dark_mode: !darkMode
     })
     fetch(`/employee/${employee.id}`, {
       method: "PATCH",
@@ -15,7 +15,7 @@ function DarkModeToggle({employee}) {
       body: body
     }).then(r=>{
       if (r.ok) {
-        toggleDarkMode()
+        setDarkMode(!darkMode)
       } else {
         console.log('error')
       }

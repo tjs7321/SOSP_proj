@@ -9,12 +9,13 @@ import { ThemeContext } from "../context/ThemeContext"
 export default function NavBar({ employee, setEmployee }) {
 
   const history = useHistory()
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext)
+  const { darkMode, setDarkMode } = useContext(ThemeContext)
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setEmployee(null)
+        setDarkMode(false)
         history.push("/")
       }
     });

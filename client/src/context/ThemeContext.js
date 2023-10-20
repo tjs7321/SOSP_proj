@@ -11,7 +11,7 @@ function ThemeProvider({ children }) {
     }
 
     return (
-    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={{ darkMode, setDarkMode, toggleDarkMode }}>
     {children}
     </ThemeContext.Provider>
     );
