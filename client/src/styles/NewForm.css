@@ -27,9 +27,9 @@
 
 .newForm form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     margin: 10px;
     flex-wrap: wrap;
     border-style: none;
@@ -102,6 +102,7 @@
     align-items: inherit;
     background-image: url('../images/lightPaper.jpg');
     background-repeat: round;
+    background-size: cover;
     width: 37%;
     height: 80%;
     overflow: auto;
@@ -132,6 +133,7 @@
     align-items: inherit;
     background-image: url('../images/darkPaper.jpg');
     background-repeat: round;
+    background-size: cover;
     width: 37%;
     height: 80%;
     overflow: auto;
