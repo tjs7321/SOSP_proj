@@ -17,12 +17,14 @@ import "../styles/Login.css"
 function App() {
   const [employee, setEmployee] = useState(null)
   const [questionLists, setQuestionLists] = useState([])
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext)
+  const { darkMode, setDarkMode } = useContext(ThemeContext)
 
   useEffect(() => {
     fetch("/check_session").then((r) => {
       if (r.ok) {
-        r.json().then((employee) => setEmployee(employee))
+        r.json().then((employee) => {
+          setEmployee(employee)
+          setDarkMode(employee.dark_mode)})
       }
     })
     fetch(`/questions`)
@@ -38,10 +40,19 @@ function App() {
     })
   }, [])
 
+  function onLogin(user){
+    setEmployee(user)
+    setDarkMode(user.dark_mode)
+  }
+
+  if (employee){
+    console.log(employee.dark_mode)
+  }
+
   if (!employee) return (
       <div
       className="loginForm">
-        <Login onLogin={setEmployee} />
+        <Login onLogin={onLogin} />
       </div>
   )
 

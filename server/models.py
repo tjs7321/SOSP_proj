@@ -15,6 +15,7 @@ class Employee(db.Model):
     type = db.Column(db.String)
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
     site_id = db.Column(db.Integer, db.ForeignKey('sites.id'))
+    dark_mode = db.Column(db.Boolean, default=False)
 
     department = db.relationship('Department', back_populates='employees')
     forms = db.relationship('Form', backref='employee')
@@ -47,7 +48,8 @@ class Employee(db.Model):
             'type':self.type,
             'department_id':self.department_id,
             'site_id':self.site_id,
-            'department':self.department.name
+            'department':self.department.name,
+            'dark_mode':self.dark_mode
         }
     
     @validates('type')
