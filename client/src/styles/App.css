@@ -22,6 +22,7 @@
   height: 100vh;
   font-family: monospace;
   font-weight: bold;
+  overflow-y: hidden;
 }
 
 .background.dark-mode {

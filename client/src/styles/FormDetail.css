@@ -23,6 +23,20 @@
     gap: 1rem;
     height: 80%;
     padding-top: 30px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--button-bg-light);
+        border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-light);
+    }
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
 }
 
 #formContent {
@@ -40,6 +54,20 @@
 .formDetail.dark-mode {
     /* background-color: var(--background-dark); */
     color: var(--text-dark);
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--button-bg-dark);
+        border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-dark);
+    }
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
 }
 
 .recentSubmissions {
@@ -79,6 +107,7 @@
 
 .formDetail.dark-mode select{
     background-color: #dddcdc00;
+    
 }
 
 .formDetail form {
@@ -127,10 +156,38 @@
     border-color: #6e6e6e;
     border-radius: 0.25rem;
     cursor: pointer;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--button-bg-light);
+        border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-light);
+    }
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
 }
 
 .formDetail.dark-mode form textarea{
     background-color: #dddcdc00;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--button-bg-dark);
+        border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-dark);
+    }
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
 }
 
 .formDetail div{
@@ -162,9 +219,23 @@
     align-items: inherit;
     background-image: url('../images/lightPaper.jpg');
     background-repeat: no-repeat;
-    width: 50%;
+    width: 37%;
     background-position: initial;
     background-size: cover;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--button-bg-light);
+        border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-light);
+    }
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
 }
 
 #form-detail-dark-mode {
@@ -179,9 +250,23 @@
     align-items: inherit;
     background-image: url('../images/darkPaper.jpg');
     background-repeat: no-repeat;
-    width: 50%;
+    width: 37%;
     background-position: initial;
     background-size: cover;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--button-bg-dark);
+        border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-dark);
+    }
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
 }
 
 #questions {
