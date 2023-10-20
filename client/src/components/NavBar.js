@@ -32,7 +32,9 @@ export default function NavBar({ employee, setEmployee }) {
       className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
         <div>
-          <DarkModeToggle/>
+          <DarkModeToggle
+          employee={employee}
+          />
           <NavLink to="/department_forms" className="navLink">
               <button
               as={Link} to="/department_forms"
@@ -73,7 +75,9 @@ export default function NavBar({ employee, setEmployee }) {
       <nav
       className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
-        <DarkModeToggle/>
+        <DarkModeToggle
+          employee={employee}
+        />
         <NavLink className="navLink"
           to="/">
           <h1>Safety Submission Portal
@@ -98,7 +102,9 @@ export default function NavBar({ employee, setEmployee }) {
       className={`navbar ${darkMode ? 'dark-mode' : ''}`}
       >
         <div>
-          <DarkModeToggle/>
+        <DarkModeToggle
+          employee={employee}
+        />
           <NavLink to="/site_forms" className="navLink">
               <button
               as={Link} to="/site_forms"

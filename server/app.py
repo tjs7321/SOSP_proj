@@ -207,7 +207,27 @@ class SiteForms(Resource):
                 {'message': 'Access Denied, Admins only'},
                 403
             )
-    
+
+class EmployeeByID(Resource):
+
+    def patch(self,id):
+        if (employee:= Employee.find_by_id(id)):
+            if (employee.id == session.get('employee_id')):
+                try:
+                    data=request.get_json()
+                    print(data)
+                    employee.dark_mode = data['dark_mode']
+
+                    
+                    db.session.add(employee)
+                    db.session.commit()
+                    return employee.to_dict(), 202
+                except ValueError as e:
+                    return {'error':str(e)}, 422
+            else:
+                return {'error':'Unauthorized'}, 403
+        else:
+            return {'error':'Employee not found'}, 404
     
 api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Logout, '/logout', endpoint='logout')
@@ -219,6 +239,7 @@ api.add_resource(Questions, '/questions', endpoint='questions')
 api.add_resource(SafetyMessageByID,'/safety_messages/<int:id>')
 api.add_resource(ManagerDepartmentForms, '/department_forms', endpoint='department_forms')
 api.add_resource(SiteForms, '/site_forms', endpoint='site_forms')
+api.add_resource(EmployeeByID,'/employee/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

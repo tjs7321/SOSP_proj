@@ -38,6 +38,8 @@ function App() {
     })
   }, [])
 
+  console.log(employee)
+
   if (!employee) return (
       <div
       className="loginForm">
